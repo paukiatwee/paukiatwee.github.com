@@ -10,11 +10,11 @@
     <meta name="robots" content="noodp, noydir" />
     
     
-    <meta name="description" content="Pau Kiat Wee's Blog Welcome" />
+    <meta name="description" content="Pau Kiat Wee's Blog PaaS Performance&#58; AppFog vs CloudFoundry" />
     
     
     
-    <title>Welcome | Pau Kiat Wee's Blog</title>
+    <title>PaaS Performance&#58; AppFog vs CloudFoundry | Pau Kiat Wee's Blog</title>
     
     <link href="/css/style.css" rel="stylesheet">
     <script type="text/javascript">
@@ -50,11 +50,10 @@
       <div class="row">
         <div class="span8">
           <div class="well main shadow">
-            
-  <h2><a href="/cloud/pass-peformance-appfog-vs-cloudfoundry/" title="PaaS Performance&#58; AppFog vs CloudFoundry" rel="bookmark">PaaS Performance&#58; AppFog vs CloudFoundry</a></h2>
-  <small>03 Sep 2012</small>
-  <div class="content">
-    <p>Recently <a href='http://en.wikipedia.org/wiki/Platform_as_a_service'>PaaS</a> (Platform as a service) is new technologies that grow rapidly, to provide a platform let developers focus on creating awesome application/website instead of configuring/maintaining servers. In this fews weeks, I was playing around two PaaS, which are <a href='http://www.cloudfoundry.com'>CloudFoundry</a> and <a href='http://appfog.com/'>AppFog</a>. These two PaaS provider is really awesome, and CloudFoundry is open source PaaS that available on <a href='http://github.com/cloudfoundry'>github</a> and AppFog is based on CloudFoundry.</p>
+            <h2>PaaS Performance&#58; AppFog vs CloudFoundry</h2>
+<small>03 Sep 2012</small>
+<div class="content">
+<p>Recently <a href='http://en.wikipedia.org/wiki/Platform_as_a_service'>PaaS</a> (Platform as a service) is new technologies that grow rapidly, to provide a platform let developers focus on creating awesome application/website instead of configuring/maintaining servers. In this fews weeks, I was playing around two PaaS, which are <a href='http://www.cloudfoundry.com'>CloudFoundry</a> and <a href='http://appfog.com/'>AppFog</a>. These two PaaS provider is really awesome, and CloudFoundry is open source PaaS that available on <a href='http://github.com/cloudfoundry'>github</a> and AppFog is based on CloudFoundry.</p>
 
 <p>In this post, I will do a simple load test againts these two provider using Apache Benchmark, to see which one is performance better, and the result is surprising. The load test I doing is againt a simple Java web application available on at <a href='https://github.com/appfog/af-java-base'>here</a>. The main reason I use this simple application is because AppFog currently is having <a href='https://groups.google.com/forum/#!topic/appfog-users/hxBxUe3c4QI'>issue</a> with Java application, thus I only can use the sample provided by them. I deployed same application to both of the provider.</p>
 
@@ -167,40 +166,20 @@
 <h4 id='conclusion'>Conclusion</h4>
 
 <p>From the two tables, we can notice that CloudFoundry can handle up to 500 requests per second while AppFog only 25 requests per second which is 20 times slower than CloudFoundry.</p>
-  </div>
-  <hr />
-
-  <h2><a href="/github-page/github-page-custom-domain/" title="Custom domain for github pages" rel="bookmark">Custom domain for github pages</a></h2>
-  <small>11 Aug 2012</small>
-  <div class="content">
-    <p><a href='http://github.com'>Github.com</a> provide free blog platform for geeks and hackers. One of the features include custom domain, by default the blog domain is <strong>USERNAME.github.com</strong> after you create a repository with <strong>USERNAME.github.com</strong> at your github account.</p>
-
-<p>To use custom domain, first you need to have a domain, either from <a href='http://godaddy.com'>godaddy.com</a> or <a href='http://namecheap.com'>namecheap.com</a>, in this post, I will use <a href='http://namecheap.com'>namecheap.com</a>.</p>
-
-<p>First, create a file <strong>CNAME</strong>. Write the custom domain in the file, in my case is <strong>dreamand.me</strong>. Then commit and push to your repository.</p>
-
-<p>Then, login into your domain management page, add two A records to points to github pages&#8217; IP <strong>204.232.175.78</strong>. First record is point from naked domain, in my case is <strong>dreamand.me</strong>, second record is point from <strong>www</strong> subdomain. After setup, wait few minutes to let the DNS take effect.</p>
-
-<p>You can have a look at my repository at <a href='https://github.com/paukiatwee/paukiatwee.github.com'>here</a>.</p>
-
-<p><img alt='github pages custom domain with namecheap.com' src='/img/posts/github-pages-custom-domain-with-namecheap.png' /></p>
-  </div>
-  <hr />
-
-  <h2><a href="/app/aws-price-chart/" title="AWS Price Comparison Chart" rel="bookmark">AWS Price Comparison Chart</a></h2>
-  <small>04 Aug 2012</small>
-  <div class="content">
-    <div class='chart' id='chart' style='width: 90%; height: 300px;'>&nbsp;</div><p>Simple chart showing the comparison of the prices among different type of pricing for Small instance.</p>
-  </div>
-  <hr />
-
-  <h2><a href="/github-page/hello-world/" title="Hello World" rel="bookmark">Hello World</a></h2>
-  <small>12 Jul 2012</small>
-  <div class="content">
-    <p>This is hello world post that running on <a href='https://help.github.com/categories/20/articles'>Github page</a> and <a href='https://github.com/mojombo/jekyll/'>Jekyll</a>!</p>
-  </div>
-  <hr />
-
+</div>
+<br />
+<small>Filed under <a href="/cloud/">cloud</a></small>
+<hr>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'dream-and-me';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
           </div>
         </div>
