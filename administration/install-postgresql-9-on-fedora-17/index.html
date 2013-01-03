@@ -10,12 +10,14 @@
     <meta name="robots" content="noodp, noydir" />
     
     
-    
-    <meta name="description" content="Pau Kiat Wee's Blog Hello World" />
-    
+    <meta name="keywords" content="fedora 17, fedora, install postgresql, install postgres, postgres 9.1, postgresql 9.1" />
     
     
-    <title>Hello World | Pau Kiat Wee's Blog</title>
+    <meta name="description" content="How to install PostgreSQL 9.1 on Fedora 17, and configure service then create user and database." />
+    
+    
+    
+    <title>How to Install Postgresql 9.1 on Fedora 17 | Pau Kiat Wee's Blog</title>
     
     <link href="/css/style.css" rel="stylesheet">
     <script type="text/javascript">
@@ -51,19 +53,90 @@
       <div class="row">
         <div class="span8">
           <div class="well main shadow">
-            <h2>Hello World</h2>
-<div class="social-share"><small>12 Jul 2012</small>&nbsp;&nbsp;&nbsp;
-  <div class="tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://dreamandme.com/github-page/hello-world/" data-text="Hello World">Tweet</a></div>
+            <h2>How to Install Postgresql 9.1 on Fedora 17</h2>
+<div class="social-share"><small>03 Jan 2013</small>&nbsp;&nbsp;&nbsp;
+  <div class="tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://dreamandme.com/administration/install-postgresql-9-on-fedora-17/" data-text="How to Install Postgresql 9.1 on Fedora 17">Tweet</a></div>
   <div class="g-plusone" data-size="medium"></div>
 </div>
 
 <div class="content">
-<p>This is hello world post that running on <a href="https://help.github.com/categories/20/articles">Github page</a> and <a href="https://github.com/mojombo/jekyll/">Jekyll</a>!</p>
+<p>PostgreSQL is a powerful, open source object-relational database system. It is fully ACID compliant, has full support for foreign keys, joins, views, triggers, and stored procedures (in multiple languages). It includes most SQL:2008 data types, including INTEGER, NUMERIC, BOOLEAN, CHAR, VARCHAR, DATE, INTERVAL, and TIMESTAMP.</p>
 
+<p>In this post, I will describe how to install PostgreSQL 9.1 server on Fedora 17. So let’s get started.</p>
+
+<!--more-->
+
+<h3 id="install-postgresql-91-and-initialize-database">Install PostgreSQL 9.1 and Initialize Database</h3>
+
+<pre><code>sudo yum install postgresql-server
+sudo postgresql-setup initdb
+</code></pre>
+
+<h3 id="enable-postgresql-service-and-start-postgresql">Enable PostgreSQL Service and Start PostgreSQL</h3>
+<p>If you wish to start PostgreSQL as service, follow the step.</p>
+
+<pre><code>sudo systemctl enable postgresql.service
+sudo systemctl start postgresql.service
+</code></pre>
+
+<h3 id="create-database-user-and-database">Create Database User and Database</h3>
+<p>To create a <code>pgadmin</code> user and <code>pgadmin</code> database, follow the steps.</p>
+
+<pre><code>su -			# change to root
+su postgres		# change to Postgres User
+createuser --superuser -P pgadmin
+createdb --encoding=utf-8 --owner=pgadmin pgadmin
+</code></pre>
+
+<h3 id="change-authentication-method">Change Authentication Method</h3>
+<p>To force the user authenticate using a password, we need change the config to use password authentication.</p>
+
+<pre><code>sudo vi /var/lib/pgsql/data/pg_hba.conf
+</code></pre>
+
+<p>change <code>peer</code> and <code>ident</code> to <code>md5</code>.</p>
+
+<pre><code># TYPE  DATABASE        USER            ADDRESS                 METHOD
+
+# "local" is for Unix domain socket connections only
+local   all             all                                     peer
+# IPv4 local connections:
+host    all             all             127.0.0.1/32            ident
+# IPv6 local connections:
+host    all             all             ::1/128                 ident
+</code></pre>
+
+<p>to</p>
+
+<pre><code># TYPE  DATABASE        USER            ADDRESS                 METHOD
+
+# "local" is for Unix domain socket connections only
+local   all             all                                     md5
+# IPv4 local connections:
+host    all             all             127.0.0.1/32            md5
+# IPv6 local connections:
+host    all             all             ::1/128                 md5
+</code></pre>
+
+<p>Restart PostgreSQL to make new authetication method take effect.</p>
+
+<pre><code>systemctl restart postgresql.service
+</code></pre>
+
+<h3 id="testing-installation">Testing installation</h3>
+<p>To test the installation, try to login as <code>pgadmin</code>.</p>
+
+<pre><code>psql -U pgadmin -w
+Password for user pgadmin:
+psql (9.1.7)
+Type "help" for help.
+
+pgadmin=# 
+</code></pre>
 
 </div>
 <br />
-<small>Filed under <a href="/github-page/">github-page</a></small>
+<small>Filed under <a href="/administration/">administration</a></small>
 <hr>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
