@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>/cloud/how-to-backup-postgresql-to-localhost-at-appfog/</loc>
+    <lastmod>2013-01-04</lastmod>
+
+  </url>
+  <url>
     <loc>/administration/install-postgresql-9-on-fedora-17/</loc>
     <lastmod>2013-01-03</lastmod>
 

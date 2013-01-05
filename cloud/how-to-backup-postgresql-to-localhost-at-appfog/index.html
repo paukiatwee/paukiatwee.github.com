@@ -10,12 +10,14 @@
     <meta name="robots" content="noodp, noydir" />
     
     
-    
-    <meta name="description" content="Custom domain for github pages" />
-    
+    <meta name="keywords" content="backup, postgresql, appfog, localhost" />
     
     
-    <title>Custom domain for github pages | Pau Kiat Wee's Blog</title>
+    <meta name="description" content="How to backup PosrgreSQL database from AppFog and import into other PostgreSQL database for development/backup usage." />
+    
+    
+    
+    <title>How to backup PostgreSQL to localhost at AppFog | Pau Kiat Wee's Blog</title>
     
     <link href="/css/style.css" rel="stylesheet">
     <script type="text/javascript">
@@ -51,31 +53,98 @@
       <div class="row">
         <div class="span8">
           <div class="well main shadow">
-            <h2>Custom domain for github pages</h2>
-<div class="social-share"><small>11 Aug 2012</small>&nbsp;&nbsp;&nbsp;
-  <div class="tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://dreamandme.com/github-page/github-page-custom-domain/" data-text="Custom domain for github pages">Tweet</a></div>
+            <h2>How to backup PostgreSQL to localhost at AppFog</h2>
+<div class="social-share"><small>04 Jan 2013</small>&nbsp;&nbsp;&nbsp;
+  <div class="tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://dreamandme.com/cloud/how-to-backup-postgresql-to-localhost-at-appfog/" data-text="How to backup PostgreSQL to localhost at AppFog">Tweet</a></div>
   <div class="g-plusone" data-size="medium"></div>
 </div>
 
 <div class="content">
-<p><a href="http://github.com">Github.com</a> provide free blog platform for geeks and hackers. One of the features include custom domain, by default the blog domain is <strong>USERNAME.github.com</strong> after you create a repository with <strong>USERNAME.github.com</strong> at your github account.</p>
+<p><a href="http://appfog.com">AppFog, Inc.</a> is the leading platform-as-a-service provider of PHP, Ruby, Node.js, and Java solutions. Used by developers worldwide to deploy tens of thousands of applications, AppFog delivers a reliable, scalable and fast platform for deploying applications in the cloud. AppFog is a private company headquartered in Portland, Oregon.</p>
+
+<p>In this post, I will teach how to backup <a href="http://www.postgresql.org">PostgreSQL</a> database to local. So let’s get started!</p>
 
 <!--more-->
 
-<p>To use custom domain, first you need to have a domain, either from <a href="http://godaddy.com">godaddy.com</a> or <a href="http://namecheap.com">namecheap.com</a>, in this post, I will use <a href="http://namecheap.com">namecheap.com</a>.</p>
+<h3 id="appfog-command-line-tool">AppFog Command Line Tool</h3>
+<p>First, make sure you have <code>af</code> gem installed.</p>
 
-<p>First, create a file <strong>CNAME</strong>. Write the custom domain in the file, in my case is <strong>dreamand.me</strong>. Then commit and push to your repository.</p>
+<pre><code>gem install af
+</code></pre>
 
-<p>Then, login into your domain management page, add two A records to points to github pages’ IP <strong>204.232.175.78</strong>. First record is point from naked domain, in my case is <strong>dreamand.me</strong>, second record is point from <strong>www</strong> subdomain. After setup, wait few minutes to let the DNS take effect.</p>
+<h3 id="export-database">Export Database</h3>
+<p>To backup, you need to export the database via <code>af</code> command</p>
 
-<p>You can have a look at my repository at <a href="https://github.com/paukiatwee/paukiatwee.github.com">here</a>.</p>
+<pre><code>## login
+af login
+Attempting login to [https://api.appfog.com]
+Email: user@domain.com
+Password: *********
+Successfully logged into [https://api.appfog.com]
 
-<p><img src="/img/posts/github-pages-custom-domain-with-namecheap.png" alt="github pages custom domain with namecheap.com" title="github pages custom domain with namecheap.com" /></p>
+## export database
+af export-service myservice		# myservice is the database you want to export
+Exporting data from 'myservice': OK
+http://dl.ap01.aws.af.cm/serialized/postgresql/&lt;you database&gt;/snapshots/1871?token=&lt;random token&gt;
+</code></pre>
+
+<p><strong>Note:</strong> <code>user@domain.com</code> is your AppFog username.</p>
+
+<h3 id="download-exported-database-backup">Download exported Database Backup</h3>
+<p>Then download the backup via the link shows at the console.
+Unzip the file, you will see two files in there:</p>
+
+<ul>
+  <li>manifest</li>
+  <li>content/1234.dump</li>
+</ul>
+
+<h3 id="import-to-local-postgresql">Import to Local PostgreSQL</h3>
+<p>The *.dump file is just normal PostregSQL dump file, so you can import into any PostgreSQL as normal dump file. Since it is *.dump file, you will need to use <code>pg_restore</code> or PGAdmin 3 Client to restore.</p>
+
+<h4 id="restore-using-pgrestore">Restore Using pg_restore</h4>
+
+<pre><code>## create databse if you dont have
+psql -U pgadmin -W
+Password for user pgadmin: 
+psql (9.1.7)
+Type "help" for help.
+
+pgadmin=# CREATE DATABASE development;
+CREATE DATABASE
+pgadmin=# \quit
+
+
+## restore into database
+pg_restore -c -d development -U pgadmin -W 1234.dump 
+Password: 
+</code></pre>
+
+<h3 id="verify-restore">Verify Restore</h3>
+<pre><code>psql -U pgadmin -d development -W
+Password for user pgadmin: 
+psql (9.1.7)
+Type "help" for help.
+
+development=# \d
+                  List of relations
+ Schema |         Name          |   Type   |  Owner  
+--------+-----------------------+----------+---------
+ public | test                  | table    | pgadmin
+ public | test_id_seq           | sequence | pgadmin
+(2 rows)
+</code></pre>
+
+<p><strong>Note:</strong> <code>pgadmin</code> is the database username, yours might not the same.</p>
+
+<p><strong>Note:</strong> <code>development</code> is the database name, you can use your prefered name.</p>
+
+<p><strong>Note:</strong> <code>1234.dump</code> is the dump file name, your backup might not have same name.</p>
 
 
 </div>
 <br />
-<small>Filed under <a href="/github-page/">github-page</a></small>
+<small>Filed under <a href="/cloud/">cloud</a></small>
 <hr>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
