@@ -123,10 +123,20 @@ host    all             all             ::1/128                 md5
 <pre><code>systemctl restart postgresql.service
 </code></pre>
 
-<h3 id="testing-installation">Testing installation</h3>
+<h3 id="install-postgresql-gui-client">Install PostgreSQL GUI Client</h3>
+<p>If you want to manage PostgreSQL using a GUI client, you need to install <code>pgadmin3</code>.</p>
+
+<pre><code>sudo yum install pgadmin3
+</code></pre>
+
+<p>Then you can open  pgadmin gui.</p>
+
+<p><img src="/img/posts/pgadmin3-gui.png" alt="pgadmin3 screenshot" title="pgadmin3 screenshot" /></p>
+
+<h3 id="test-installation">Test installation</h3>
 <p>To test the installation, try to login as <code>pgadmin</code>.</p>
 
-<pre><code>psql -U pgadmin -w
+<pre><code>psql -U pgadmin -W
 Password for user pgadmin:
 psql (9.1.7)
 Type "help" for help.
