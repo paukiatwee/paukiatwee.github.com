@@ -10,12 +10,14 @@
     <meta name="robots" content="noodp, noydir" />
     
     
-    
-    <meta name="description" content="Pau Kiat Wee's Blog Hello World" />
-    
+    <meta name="keywords" content="adbrite, performance, load faster, asynchronously, site engagement" />
     
     
-    <title>Hello World | Pau Kiat Wee's Blog</title>
+    <meta name="description" content="How to load Adbrite ads at your site faster/asynchronously for better performance." />
+    
+    
+    
+    <title>How To Load Adbrite Ads Faster/Asynchronously at Your Site | Pau Kiat Wee's Blog</title>
     
     <link href="/css/style.css" rel="stylesheet">
     <script type="text/javascript">
@@ -52,19 +54,67 @@
       <div class="row">
         <div class="span8">
           <div class="well main shadow">
-            <h2>Hello World</h2>
-<div class="social-share"><small>12 Jul 2012</small>&nbsp;&nbsp;&nbsp;
-  <div class="tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://dreamandme.com/github-page/hello-world/" data-text="Hello World">Tweet</a></div>
+            <h2>How To Load Adbrite Ads Faster/Asynchronously at Your Site</h2>
+<div class="social-share"><small>20 Jan 2013</small>&nbsp;&nbsp;&nbsp;
+  <div class="tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://dreamandme.com/web-development/how-to-load-adbrite-faster/" data-text="How To Load Adbrite Ads Faster/Asynchronously at Your Site">Tweet</a></div>
   <div class="g-plusone" data-size="medium"></div>
 </div>
 
 <div class="content">
-<p>This is hello world post that running on <a href="https://help.github.com/categories/20/articles">Github page</a> and <a href="https://github.com/mojombo/jekyll/">Jekyll</a>!</p>
+<p><a href="http://www.adbrite.com/">adBrite</a> is the largest independent ad exchange, reaching 300 million global unique visitors every month, including more than 150 million in the U.S. It is alternative to <a href="https://www.google.com/adsense/">Google Adsense</a>.</p>
+
+<p>In this post, I will describe how to make <a href="http://www.adbrite.com/">adBrite</a> ads load faster at your site to increase your site engagement.</p>
+
+<!--more-->
+
+<h3 id="theory-behind-load-adbrite-ads-faster">Theory Behind Load Adbrite Ads Faster</h3>
+<p>Before implement the changes, let understand how to load Adbrite ads faster. Most modern browsers load iframe asynchronously without blocking other elements, thus the technique to load Adbrite ads <strong>faster/asynchronously</strong> is using html <code>iframe</code>.</p>
+
+<h3 id="create-iframe-page">Create Iframe Page</h3>
+<p>First for all, you need create a iframe page for your site to include the <code>code</code> provided by <a href="http://www.adbrite.com/">adBrite</a> and name it as <code>ads-banner.html</code>. You can create few html for different types of ads.</p>
+
+<p>Example <code>iframe</code> code:</p>
+
+<pre><code>&lt;html&gt;
+&lt;body style="margin: 0; padding: 0;"&gt;
+&lt;!-- Begin: adBrite, Generated: 2013-01-18 20:56:53  --&gt;
+
+
+&lt;!-- your adbrite code goes here --&gt;
+
+
+&lt;!-- End: adBrite --&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="include-iframe-to-show-adbrite-ads">Include Iframe to show adBrite Ads</h3>
+<p>To include adBrite ads, you need add a <code>iframe</code> element to the placement where you want to show ads.</p>
+
+<pre><code>&lt;html&gt;
+&lt;body&gt;
+	&lt;header&gt;...&lt;/header&gt;
+	&lt;section id="content"&gt;...&lt;/section&gt;
+	&lt;section id="site-bar"&gt;...&lt;/section&gt;
+	&lt;section id="banner"&gt;
+
+		&lt;!-- add a iframe to link to your ads code --&gt;
+		&lt;iframe src="/ads-banner.html" frameborder="0"&gt;&lt;/iframe&gt;
+
+
+	&lt;/section&gt;
+	&lt;footer&gt;...&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3 id="test-adbdite-ads-load-time">Test adBdite Ads Load Time</h3>
+<p>After you implement these changes, you will notice the page load time is significantly faster. Enjoy this enhancement and increase site engagement!</p>
 
 
 </div>
 <br />
-<small>Filed under <a href="/github-page/">github-page</a></small>
+<small>Filed under <a href="/web-development/">web-development</a></small>
 <hr>
 <div id="disqus_thread"></div>
 <script type="text/javascript">

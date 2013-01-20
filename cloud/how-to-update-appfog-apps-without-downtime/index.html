@@ -10,12 +10,14 @@
     <meta name="robots" content="noodp, noydir" />
     
     
-    
-    <meta name="description" content="Pau Kiat Wee's Blog Hello World" />
-    
+    <meta name="keywords" content="appfog, downtime, scheduled downtime, no downtime" />
     
     
-    <title>Hello World | Pau Kiat Wee's Blog</title>
+    <meta name="description" content="This post will describe how to update your AppFog app whith scheduled downtime with a temporary page to avoid display ugly AppFog default error page." />
+    
+    
+    
+    <title>How To Update AppFog App With Scheduled Downtime Page | Pau Kiat Wee's Blog</title>
     
     <link href="/css/style.css" rel="stylesheet">
     <script type="text/javascript">
@@ -52,19 +54,41 @@
       <div class="row">
         <div class="span8">
           <div class="well main shadow">
-            <h2>Hello World</h2>
-<div class="social-share"><small>12 Jul 2012</small>&nbsp;&nbsp;&nbsp;
-  <div class="tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://dreamandme.com/github-page/hello-world/" data-text="Hello World">Tweet</a></div>
+            <h2>How To Update AppFog App With Scheduled Downtime Page</h2>
+<div class="social-share"><small>20 Jan 2013</small>&nbsp;&nbsp;&nbsp;
+  <div class="tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://dreamandme.com/cloud/how-to-update-appfog-apps-without-downtime/" data-text="How To Update AppFog App With Scheduled Downtime Page">Tweet</a></div>
   <div class="g-plusone" data-size="medium"></div>
 </div>
 
 <div class="content">
-<p>This is hello world post that running on <a href="https://help.github.com/categories/20/articles">Github page</a> and <a href="https://github.com/mojombo/jekyll/">Jekyll</a>!</p>
+<p><a href="http://www.appfog.com/">Appfog</a> is one of the fast growing PaaS providers out there, however, some of the feature is not available yet, for example, a custom page to show during scheduled down time. This is one of the <a href="http://feedback.appfog.com/forums/171983-appfog/suggestions/3563669-maintenance-mode">feature request</a>, please vote it to make sure AppFog will implement this ASAP.</p>
+
+<p>In this post, I will describe how to make your own maintanance page, so let’s get started.</p>
+
+<!--more-->
+
+<h3 id="appfog-default-error-page">AppFog Default Error Page</h3>
+<p>AppFog display their default error page when your site is down during update, which is kind of not so userfriendly for your site visitor.</p>
+
+<p><img src="/img/posts/appfog-404.png" alt="AppFog Default Error Page" title="AppFog Default Error Page" /></p>
+
+<h3 id="create-a-app-to-display-scheduled-downtime-page">Create a App to Display Scheduled Downtime Page</h3>
+<p>To display scheduled downtime page, you will need a simple app hosted at AppFog, most recommended way is to create a simple small <a href="http://www.sinatrarb.com/">Ruby Sinatra</a>, <a href="http://expressjs.com/">NodeJS Express</a>, or <a href="http://flask.pocoo.org/">Python Flask</a> app. I will not go through how to create those app in details, you can find a lot tutorials via Google Search.</p>
+
+<h3 id="before-update-appfog">Before Update AppFog</h3>
+<p>Before update your main app, you need bind the scheduled downtime app to your main app’s domain. For example, is your main app domain is <code>yourdomain.com</code>, then you need bind scheculed downtime app into this domain before you update the main app.</p>
+
+<p>Screenshot:</p>
+
+<p><img src="/img/posts/appfog-downtime-custom-page.png" alt="AppFog Custom Downtime Page" title="AppFog Custom Downtime Page" /></p>
+
+<h3 id="update-appfog-app">Update AppFog App</h3>
+<p>Once your scheduled downtime page app is bind to same domain as your main app, you can start to update main app. During the main app’s downtime, all visitors will serve by your custom scheduled downtime page app without showing AppFog’s default error page thus increase your site engagement. You can futher develop the app to let user to enter email address to notify them after update is completed.</p>
 
 
 </div>
 <br />
-<small>Filed under <a href="/github-page/">github-page</a></small>
+<small>Filed under <a href="/cloud/">cloud</a></small>
 <hr>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
