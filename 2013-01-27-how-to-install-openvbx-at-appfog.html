@@ -10,12 +10,14 @@
     <meta name="robots" content="noodp, noydir" />
     
     
-    
-    <meta name="description" content="Learn how to be a better programmer using technologies, a blog by geek" />
-    
+    <meta name="keywords" content="appfog, openvbs, bulk sms, sms marketing, twilio, clodfoundry" />
     
     
-    <title>Hello World | Dream and Me</title>
+    <meta name="description" content="Install OpenVBX at CloudFoundry/AppFog to send bulk SMS within minutes for free" />
+    
+    
+    
+    <title>Install OpenVBX at CloudFoundry/AppFog to Send Bulk SMS | Dream and Me</title>
     
     <link href="/css/style.css" rel="stylesheet">
     <script type="text/javascript">
@@ -52,19 +54,94 @@
       <div class="row">
         <div class="span8">
           <div class="well main shadow">
-            <h2>Hello World</h2>
-<div class="social-share"><small>12 July 2012</small>&nbsp;&nbsp;&nbsp;
-  <div class="tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://dreamandme.com/github-page/hello-world/" data-text="Hello World">Tweet</a></div>
+            <h2>Install OpenVBX at CloudFoundry/AppFog to Send Bulk SMS</h2>
+<div class="social-share"><small></small>&nbsp;&nbsp;&nbsp;
+  <div class="tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://dreamandme.com/2013-01-27-how-to-install-openvbx-at-appfog.html" data-text="Install OpenVBX at CloudFoundry/AppFog to Send Bulk SMS">Tweet</a></div>
   <div class="g-plusone" data-size="medium"></div>
 </div>
 
 <div class="content">
-<p>This is hello world post that running on <a href="https://help.github.com/categories/20/articles">Github page</a> and <a href="https://github.com/mojombo/jekyll/">Jekyll</a>!</p>
+<p>Ever wonder how to setup your own SMS gateway within minutes without actually code the app for 6 months? Now with <a href="https://www.appfog.com">AppFog</a>/<a href="http://www.cloudfoundry.com">Cloud Foundry</a>, <a href="http://www.twilio.com">Twilio</a> and <a href="http://www.openvbx.org">OpenVBX</a> you can make it happen within minutes!</p>
+
+<p><a href="http://www.openvbx.org">OpenVBX</a> allows developers to build voice and SMS applications for business, such as toll free phone numbers, call forwarding, voicemail, visual voicemail, voicemail transcriptions, and auto-attendants.  It&rsquo;s like Google Voice, but open source and for business.</p>
+
+<!--more-->
+
+<h3 id="prerequisite">Prerequisite</h3>
+<p>Before get started, you need have the following accounts, so if you does not yet, please go sign up:</p>
+
+<ul>
+  <li><a href="https://www.appfog.com">AppFog</a> or <a href="http://www.cloudfoundry.com">Cloud Foundry</a></li>
+  <li><a href="http://www.twilio.com">Twilio</a></li>
+</ul>
+
+<p>Then you download <a href="http://www.openvbx.org">OpenVBX</a> from their site and unzip to a folder.</p>
+
+<p><img src="/img/posts/download-openvbx.png" alt="Download OpenVBX" title="Download OpenVBX" /></p>
+
+<h3 id="install-openvbx-at-appfog">Install OpenVBX at AppFog</h3>
+
+<h4 id="login">Login</h4>
+
+<p>First, you need login to <a href="https://www.appfog.com">AppFog</a> using <code>af</code> command line tool.</p>
+
+<pre><code>af login
+Attempting login to [https://api.appfog.com]
+Email: username@domain.com
+Password: **********
+Successfully logged into [https://api.appfog.com]
+</code></pre>
+
+<h4 id="create-appfog-app">Create AppFog App</h4>
+
+<pre><code>af push openvbx
+Would you like to deploy from the current directory? [Yn]: y
+Detected a PHP Application, is this correct? [Yn]: y
+1: AWS US East - Virginia
+2: AWS EU West - Ireland
+3: AWS Asia SE - Singapore
+4: Rackspace AZ 1 - Dallas
+5: HP AZ 2 - Las Vegas
+Select Infrastructure: 3
+Application Deployed URL [openvbx.ap01.aws.af.cm]: 
+Memory reservation (128M, 256M, 512M, 1G, 2G) [128M]: 
+How many instances? [1]: 
+Create services to bind to 'openvbx'? [yN]: y
+1: mongodb
+2: mysql
+3: postgresql
+4: rabbitmq
+5: redis
+What kind of service?: 2
+Specify the name of the service [mysql-50002]: mysql-openvbx
+Create another? [yN]: 
+Would you like to save this configuration? [yN]: 
+Creating Application: OK
+Creating Service [mysql-openvbx]: OK
+Binding Service [mysql-openvbx]: OK
+Uploading Application:
+  Checking for available resources: OK
+  Processing resources: OK
+  Packing application: OK
+  Uploading (21K): OK   
+Push Status: OK
+Staging Application 'openvbx': OK                                               
+Starting Application 'openvbx': OK 
+
+</code></pre>
+
+<p>Go to your OpenVBX URL, you can see the app is deployed ucessfully.</p>
+
+<p><img src="/img/posts/openvbx-running.png" alt="OpenVBX running" title="OpenVBX running" /></p>
+
+<h3 id="get-database-credential">Get Database Credential</h3>
+
+<p>Before proceed to install </p>
 
 
 </div>
 <br />
-<small>Filed under <a href="/github-page/">github-page</a></small>
+<small>Filed under <a href="/cloud/">cloud</a></small>
 <hr>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
