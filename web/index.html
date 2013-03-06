@@ -54,6 +54,13 @@
           <div class="well main shadow">
             <h1>Category - web</h1>
 
+  <h4><a href="/web/fulltext-search-at-jekyll-site/" title="Fulltext Search on Jekyll Site" rel="bookmark">Fulltext Search on Jekyll Site</a> <small>06 March 2013</small></h4>
+  <div class="content">
+    <p>I power my blog using jekyll, a static blog generator. Recenty I saw a javascript full text search engine, <a href="https://github.com/olivernn/lunr.js">lunr</a> that really awesome. So I integrate into my blog and now my blog have full text search capibility! Awesome! So in this blog I will document and describe how I did it.
+<p class='more'><a href='/web/fulltext-search-at-jekyll-site/'>Continue read &#9658;</a></p>
+  </div>
+  <hr />
+
   <h4><a href="/web/internet-scammer/" title="How Internet Scammer Setup Scam" rel="bookmark">How Internet Scammer Setup Scam</a> <small>10 February 2013</small></h4>
   <div class="content">
     <p>I come across a site that displayed a intersting ads, <strong>earn money from home</strong>, so I clicked the ads. Then I landed a page. After have a look on the page, I immediately know it is a scam. In this post I will describe how they scam.
@@ -65,6 +72,15 @@
           </div>
         </div>
           <div class="span4">
+          <div class="minor well shadow">
+  <h3>Search</h3>
+  <form id="search">
+    <div class="input-append">
+      <input type="search" name="q" id="q" placeholder="Enter keywords..."/>
+      <button class="btn" type="button">GO!</button>
+    </div>
+  </form>
+</div>
           <div class="minor well shadow">
   <h3>Find Me</h3>
   <ul class="unstyled">
@@ -89,7 +105,7 @@
     
       <li><a href="/web-development">web-development (1)</a></li>
     
-      <li><a href="/web">web (1)</a></li>
+      <li><a href="/web">web (2)</a></li>
     
     </ul>
   
@@ -114,6 +130,8 @@
     <script src="/js/jquery.flot.resize.js"></script>
     <script src="/js/jquery.flot.axislabels.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/lunr.min.js"></script>
+    <script src="/search.js"></script>
     <script src="/js/front.js"></script>
   </body>
 </html>

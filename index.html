@@ -53,6 +53,14 @@
         <div class="span8">
           <div class="well main shadow">
             
+  <h2><a href="/web/fulltext-search-at-jekyll-site/" title="Fulltext Search on Jekyll Site" rel="bookmark">Fulltext Search on Jekyll Site</a></h2>
+  <small>06 March 2013</small>
+  <div class="content">
+    <p>I power my blog using jekyll, a static blog generator. Recenty I saw a javascript full text search engine, <a href="https://github.com/olivernn/lunr.js">lunr</a> that really awesome. So I integrate into my blog and now my blog have full text search capibility! Awesome! So in this blog I will document and describe how I did it.
+<p class='more'><a href='/web/fulltext-search-at-jekyll-site/'>Continue read &#9658;</a></p>
+  </div>
+  <hr />
+
   <h2><a href="/web/internet-scammer/" title="How Internet Scammer Setup Scam" rel="bookmark">How Internet Scammer Setup Scam</a></h2>
   <small>10 February 2013</small>
   <div class="content">
@@ -146,19 +154,19 @@
   </div>
   <hr />
 
-  <h2><a href="/github-page/hello-world/" title="Hello World" rel="bookmark">Hello World</a></h2>
-  <small>12 July 2012</small>
-  <div class="content">
-    <p>This is hello world post that running on <a href="https://help.github.com/categories/20/articles">Github page</a> and <a href="https://github.com/mojombo/jekyll/">Jekyll</a>!</p>
-
-
-  </div>
-  <hr />
-
 
           </div>
         </div>
           <div class="span4">
+          <div class="minor well shadow">
+  <h3>Search</h3>
+  <form id="search">
+    <div class="input-append">
+      <input type="search" name="q" id="q" placeholder="Enter keywords..."/>
+      <button class="btn" type="button">GO!</button>
+    </div>
+  </form>
+</div>
           <div class="minor well shadow">
   <h3>Find Me</h3>
   <ul class="unstyled">
@@ -183,7 +191,7 @@
     
       <li><a href="/web-development">web-development (1)</a></li>
     
-      <li><a href="/web">web (1)</a></li>
+      <li><a href="/web">web (2)</a></li>
     
     </ul>
   
@@ -208,6 +216,8 @@
     <script src="/js/jquery.flot.resize.js"></script>
     <script src="/js/jquery.flot.axislabels.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/lunr.min.js"></script>
+    <script src="/search.js"></script>
     <script src="/js/front.js"></script>
   </body>
 </html>

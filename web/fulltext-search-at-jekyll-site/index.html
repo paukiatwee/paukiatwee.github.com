@@ -11,11 +11,11 @@
     
     
     
-    <meta name="description" content="Custom domain for github pages" />
+    <meta name="description" content="Learn how to be a better programmer using technologies, a blog by geek" />
     
     
     
-    <title>Custom domain for github pages | Dream and Me</title>
+    <title>Fulltext Search on Jekyll Site | Dream and Me</title>
     
     <link href="/css/style.css" rel="stylesheet">
     <script type="text/javascript">
@@ -52,31 +52,109 @@
       <div class="row">
         <div class="span8">
           <div class="well main shadow">
-            <h2>Custom domain for github pages</h2>
-<div class="social-share"><small>11 August 2012</small>&nbsp;&nbsp;&nbsp;
-  <div class="tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://dreamandme.com/github-page/github-page-custom-domain/" data-text="Custom domain for github pages">Tweet</a></div>
+            <h2>Fulltext Search on Jekyll Site</h2>
+<div class="social-share"><small>06 March 2013</small>&nbsp;&nbsp;&nbsp;
+  <div class="tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://dreamandme.com/web/fulltext-search-at-jekyll-site/" data-text="Fulltext Search on Jekyll Site">Tweet</a></div>
   <div class="g-plusone" data-size="medium"></div>
 </div>
 
 <div class="content">
-<p><a href="http://github.com">Github.com</a> provide free blog platform for geeks and hackers. One of the features include custom domain, by default the blog domain is <strong>USERNAME.github.com</strong> after you create a repository with <strong>USERNAME.github.com</strong> at your github account.</p>
+<p>I power my blog using jekyll, a static blog generator. Recenty I saw a javascript full text search engine, <a href="https://github.com/olivernn/lunr.js">lunr</a> that really awesome. So I integrate into my blog and now my blog have full text search capibility! Awesome! So in this blog I will document and describe how I did it.
+<!--more--></p>
 
-<!--more-->
+<h3 id="download-lunr">Download lunr</h3>
+<p>Before get started, you need download <a href="https://github.com/olivernn/lunr.js">lunr</a> at https://github.com/olivernn/lunr.js and include in your blog js folder.</p>
 
-<p>To use custom domain, first you need to have a domain, either from <a href="http://godaddy.com">godaddy.com</a> or <a href="http://namecheap.com">namecheap.com</a>, in this post, I will use <a href="http://namecheap.com">namecheap.com</a>.</p>
+<h3 id="index-content">Index Content</h3>
+<p>Before doing full text search, you need to index your blog content. First, create a <code>post.json</code> file in <code>_includes</code> folder as template to render post document:</p>
 
-<p>First, create a file <strong>CNAME</strong>. Write the custom domain in the file, in my case is <strong>dreamand.me</strong>. Then commit and push to your repository.</p>
+<pre><code>{
+  "id"    : "http://dreamand.me{{ post.url }}",
+  "title"   : "{{ post.title }}",
+  "content" : "{{ post.content | strip_html | strip_newlines | remove:'"'  }}"
+}
+</code></pre>
 
-<p>Then, login into your domain management page, add two A records to points to github pages&rsquo; IP <strong>204.232.175.78</strong>. First record is point from naked domain, in my case is <strong>dreamand.me</strong>, second record is point from <strong>www</strong> subdomain. After setup, wait few minutes to let the DNS take effect.</p>
+<p>After that, create a <code>search.js</code> at the root of the blog to hold the blog contents:</p>
 
-<p>You can have a look at my repository at <a href="https://github.com/paukiatwee/paukiatwee.github.com">here</a>.</p>
+<pre><code>---
+---
+var docs = 
+[ 
+{% for post in site.posts limit:10 %}
+  {% include post.json %},
+{% endfor %}
+];
+// init lunr
+var idx = lunr(function () {
+  this.field('title', 10);
+  this.field('content');
+})
+// add each document to be index
+for(var index in docs) {
+  idx.add(docs[index]);
+}
+</code></pre>
 
-<p><img src="/img/posts/github-pages-custom-domain-with-namecheap.png" alt="github pages custom domain with namecheap.com" title="github pages custom domain with namecheap.com" /></p>
+<p><strong>Note:</strong> The file must begin with YAML front matter block so it will be processed by Jekyll as special files.</p>
+
+<p>Now your blog is index under <code>idx</code> object and you can search it. At the end of the documents, create a <code>lunr</code> with index fields <strong>title</strong> and <strong>content</strong> to be index.</p>
+
+<h3 id="search">Search</h3>
+<p>Now is time to create search capibility using html, javascript. First, include <code>search.js</code> and <code>lunr</code> js in your site:</p>
+
+<pre><code>&lt;script src="/js/lunr.min.js"&gt;&lt;/script&gt;
+&lt;script src="/search.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>Is time to create <code>form</code> element for user to search, I have created partial <code>search.html</code> for display search form:</p>
+
+<pre><code>&lt;div class="minor well shadow"&gt;
+  &lt;h3&gt;Search&lt;/h3&gt;
+  &lt;form&gt;
+    &lt;div class="input-append"&gt;
+      &lt;input type="search" name="q" id="q" placeholder="Enter keywords..."/&gt;
+      &lt;button class="btn" type="button"&gt;GO!&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>Finally, add jquery to handle search event, add into <code>search.js</code> or other javascript file:</p>
+
+<pre><code>$(function() {
+  $("#search button").click(function() {
+    search();
+  });
+  $("#search input").keypress(function(e) {
+    if(e.which == 13) {
+      e.preventDefault();
+      search();
+    }
+  });
+})
+
+function search() {
+  var result = idx.search($("#search input").val());
+  if(result &amp;&amp; result.length &gt; 0) {
+    window.location.replace(result[0].ref);
+  } else {
+    alert("Found nothing");
+  }
+}
+</code></pre>
+
+<h3 id="improvement">Improvement</h3>
+
+<p>Currently the search is not so user friendly where autocomplete is not available. When I am free I will improve it.</p>
+
+<h3 id="summary">Summary</h3>
+<p>Using <a href="https://github.com/olivernn/lunr.js">lunr</a>, we able to bring the power of fulltext search to static generated blog, <a href="http://jekyllrb.com/">jekyll</a>. Cool.</p>
 
 
 </div>
 <br />
-<small>Filed under <a href="/github-page/">github-page</a></small>
+<small>Filed under <a href="/web/">web</a></small>
 <hr>
 <div id="disqus_thread"></div>
 <script type="text/javascript">

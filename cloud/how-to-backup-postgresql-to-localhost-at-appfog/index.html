@@ -166,6 +166,15 @@ development=# \d
         </div>
           <div class="span4">
           <div class="minor well shadow">
+  <h3>Search</h3>
+  <form id="search">
+    <div class="input-append">
+      <input type="search" name="q" id="q" placeholder="Enter keywords..."/>
+      <button class="btn" type="button">GO!</button>
+    </div>
+  </form>
+</div>
+          <div class="minor well shadow">
   <h3>Find Me</h3>
   <ul class="unstyled">
     <li><i class="icon-rss"></i>Subscribe via <a href="/feed.xml" target="_blank">RSS</a></li>
@@ -189,7 +198,7 @@ development=# \d
     
       <li><a href="/web-development">web-development (1)</a></li>
     
-      <li><a href="/web">web (1)</a></li>
+      <li><a href="/web">web (2)</a></li>
     
     </ul>
   
@@ -214,6 +223,8 @@ development=# \d
     <script src="/js/jquery.flot.resize.js"></script>
     <script src="/js/jquery.flot.axislabels.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/lunr.min.js"></script>
+    <script src="/search.js"></script>
     <script src="/js/front.js"></script>
   </body>
 </html>
