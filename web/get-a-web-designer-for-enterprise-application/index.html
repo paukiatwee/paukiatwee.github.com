@@ -10,14 +10,12 @@
     <meta name="robots" content="noodp, noydir" />
     
     
-    <meta name="keywords" content="adbrite, performance, load faster, asynchronously, site engagement" />
     
-    
-    <meta name="description" content="How to load Adbrite ads at your site faster/asynchronously for better performance." />
+    <meta name="description" content="Is time to get a web designer for your enterprise application right now! Or your future maintenance will be a pain in the ass." />
     
     
     
-    <title>How To Load Adbrite Ads Faster/Asynchronously at Your Site | Dream and Me</title>
+    <title>You Should Get Web Designer for Your Enterprise Application | Dream and Me</title>
     
     <link href="/css/style.css" rel="stylesheet">
     <script type="text/javascript">
@@ -54,67 +52,42 @@
       <div class="row">
         <div class="span8">
           <div class="well main shadow">
-            <h2>How To Load Adbrite Ads Faster/Asynchronously at Your Site</h2>
-<div class="social-share"><small>20 January 2013</small>&nbsp;&nbsp;&nbsp;
-  <div class="tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://dreamandme.com/web-development/how-to-load-adbrite-faster/" data-text="How To Load Adbrite Ads Faster/Asynchronously at Your Site">Tweet</a></div>
+            <h2>You Should Get Web Designer for Your Enterprise Application</h2>
+<div class="social-share"><small>09 March 2013</small>&nbsp;&nbsp;&nbsp;
+  <div class="tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://dreamandme.com/web/get-a-web-designer-for-enterprise-application/" data-text="You Should Get Web Designer for Your Enterprise Application">Tweet</a></div>
   <div class="g-plusone" data-size="medium"></div>
 </div>
 
 <div class="content">
-<p><a href="http://www.adbrite.com/">adBrite</a> is the largest independent ad exchange, reaching 300 million global unique visitors every month, including more than 150 million in the U.S. It is alternative to <a href="https://www.google.com/adsense/">Google Adsense</a>.</p>
-
-<p>In this post, I will describe how to make <a href="http://www.adbrite.com/">adBrite</a> ads load faster at your site to increase your site engagement.</p>
+<p>A lot of enteprise web applicaions still using <code>iframe</code> and the html code is a mess. When doing maintenance, developers feel pain in the ass when modify the style and html. It is time to get a web designer for enterprise application, right now!</p>
 
 <!--more-->
 
-<h3 id="theory-behind-load-adbrite-ads-faster">Theory Behind Load Adbrite Ads Faster</h3>
-<p>Before implement the changes, let understand how to load Adbrite ads faster. Most modern browsers load iframe asynchronously without blocking other elements, thus the technique to load Adbrite ads <strong>faster/asynchronously</strong> is using html <code>iframe</code>.</p>
+<h3 id="lost-in-html-css-and-javascript">Lost in HTML, CSS, and Javascript</h3>
 
-<h3 id="create-iframe-page">Create Iframe Page</h3>
-<p>First for all, you need create a iframe page for your site to include the <code>code</code> provided by <a href="http://www.adbrite.com/">adBrite</a> and name it as <code>ads-banner.html</code>. You can create few html for different types of ads.</p>
+<p><img src="/img/posts/messy-html.jpg" alt="Messy HTML" title="Messy HTML" /></p>
 
-<p>Example <code>iframe</code> code:</p>
+<p>Especially for old system, the developer is designer, they violent  <strong>DRY</strong> principal. Ten years ago, copy and paste actually is programmer&rsquo;s task. No one like pages of messy codes, sometime the code having not usage at all. But now is 21th century, is time to change, hire a web designer for enterprise application, not only for better ui design, but also for cleaner code.</p>
 
-<pre><code>&lt;html&gt;
-&lt;body style="margin: 0; padding: 0;"&gt;
-&lt;!-- Begin: adBrite, Generated: 2013-01-18 20:56:53  --&gt;
+<p>Enterprise web application is well known in having a lot of complex forms, a lot of fields in single page. It time to let UX expert to improve those forms. They will have better idea/trick to design that. Of course, sometime add a designer into development is not easy especially people think &ldquo;I dont want to break thing&rdquo;. But in long term, you will see the benefits.</p>
 
+<h3 id="last-choice">Last Choice</h3>
 
-&lt;!-- your adbrite code goes here --&gt;
+<p><img src="/img/posts/bootstrap-fundation.png" alt="Twitter Bootstrap and Zurb Foundation" title="Twitter Bootstrap and Zurb Foundation" /></p>
 
+<p>For whatever reason if you cant get a web designer, don&rsquo;t use homegrow CSS design if you don&rsquo;t have web designer, use open source CSS/Javascript toolkit like <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a>, or <a href="http://foundation.zurb.com/">Zurb Foundation</a>. It is free, cost nothing except learning curve for fundamental CSS/JQuery (developer must know basic CSS as well right?). Futhermore, a lot of open source components/tools around these frameworks like <a href="http://blueimp.github.com/jQuery-File-Upload/">JQuery file upload</a> and <a href="http://bootsnipp.com/">Bootsnipp</a> can make your life easier. </p>
 
-&lt;!-- End: adBrite --&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<p>Still feel pain in the ass when design based on these frameworks? Buy a premium theme (from market <a href="https://wrapbootstrap.com/">Wrapbootstrap</a>), cost you few bucks but save your developers (or even designer) 1-2 weeks time (do your math!), sometime even more. It is not 2-3 pages of forms, it is a lot, sometime up to 50 pages.</p>
 
-<h3 id="include-iframe-to-show-adbrite-ads">Include Iframe to show adBrite Ads</h3>
-<p>To include adBrite ads, you need add a <code>iframe</code> element to the placement where you want to show ads.</p>
+<h3 id="summary">Summary</h3>
+<p>Team lead for enterprise application, stop hiding in cave. Go out and read latest technologies news, open sources tools, hacking on weekends.</p>
 
-<pre><code>&lt;html&gt;
-&lt;body&gt;
-	&lt;header&gt;...&lt;/header&gt;
-	&lt;section id="content"&gt;...&lt;/section&gt;
-	&lt;section id="site-bar"&gt;...&lt;/section&gt;
-	&lt;section id="banner"&gt;
-
-		&lt;!-- add a iframe to link to your ads code --&gt;
-		&lt;iframe src="/ads-banner.html" frameborder="0"&gt;&lt;/iframe&gt;
-
-
-	&lt;/section&gt;
-	&lt;footer&gt;...&lt;/footer&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-
-<h3 id="test-adbdite-ads-load-time">Test adBdite Ads Load Time</h3>
-<p>After you implement these changes, you will notice the page load time is significantly faster. Enjoy this enhancement and increase site engagement!</p>
+<p>For &ldquo;enterprise&rdquo; company that doing enterprise application development, get a designer or use open source CSS/Javascript toolkits or buy a premium theme.</p>
 
 
 </div>
 <br />
-<small>Filed under <a href="/web-development/">web-development</a></small>
+<small>Filed under <a href="/web/">web</a></small>
 <hr>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
