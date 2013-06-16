@@ -11,11 +11,11 @@
     
     
     
-    <meta name="description" content="Currently Amazon Web Service is mostly only a Infrastructure as a Service provider, but as recent announcement that adding more service in top of AWS, you must not create a new business that add service to AWS." />
+    <meta name="description" content="Cloud Foundry general available offer more features and start paid as paid services with free trial of 60 days with 2GB of RAM. Know more about the features in this post." />
     
     
     
-    <title>Stop Create Business That Add Service To Amazon Web Service | Dream and Me</title>
+    <title>Cloud Foundry V2 Hosted Developer Edition Review | Dream and Me</title>
     
     <link href="/css/style.css" rel="stylesheet">
     <script type="text/javascript">
@@ -52,32 +52,40 @@
       <div class="row">
         <div class="span8">
           <div class="well main shadow">
-            <h2>Stop Create Business That Add Service To Amazon Web Service</h2>
-<div class="social-share"><small>13 March 2013</small>&nbsp;&nbsp;&nbsp;
-  <div class="tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://dreamandme.com/cloud/stop-create-business-that-add-service-to-aws/" data-text="Stop Create Business That Add Service To Amazon Web Service">Tweet</a></div>
+            <h2>Cloud Foundry V2 Hosted Developer Edition Review</h2>
+<div class="social-share"><small>16 June 2013</small>&nbsp;&nbsp;&nbsp;
+  <div class="tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://dreamandme.com/cloud/cloudfoundry-v2-review/" data-text="Cloud Foundry V2 Hosted Developer Edition Review">Tweet</a></div>
   <div class="g-plusone" data-size="medium"></div>
 </div>
 
 <div class="content">
-<p>With recent <a href="http://aws.amazon.com">Amazon Web Service (AWS)</a> announcement that new service to their cloud, some of the might companies will be out of business. For example AWS just announced a <a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_nodejs.html">NodeJS support</a> for their <a href="http://aws.amazon.com/elasticbeanstalk">Elastic Beanstalk</a>. In future AWS definitely will adding more service to compete with current providers out there. Which at this point is compete with PaaS providers out there.</p>
-
-<p>If you just think about a business that add value to AWS, you can stop it now. Because you don&#8217;t know when AWS will have plan that add that service to their huge platform and bring you down. So is time stop for bootstrap/startup a company that provide additional service to AWS and think something else.</p>
+<p>Cloud Foundry just moved to general available as paid service witn trial of 60 days of 2GB of RAM. During developer preview of Cloud Foundry, they operate under VMWare and now moved to Pivotal as paid service. Let see what CLoud Foundry provide to developers in this new raising PaaS industry.</p>
 
 <!--more-->
 
-<h3 id="aws-is-more-than-just-iaas-soon">AWS is More Than Just IaaS (Soon)</h3>
-<p>The giant busisness that host thousand  of online services such as <a href="http://reddit.com">Reddit</a>, <a href="www.netflix.com">NetFlix</a> still innovating with their platform by adding more services and lowing price. At some point of future, I think they will add some services on top of current platform after they <strong>finish</strong> innovate on infrastructure. For examle, now they start to adding more services on top of EC2 such as <a href="http://aws.amazon.com/elasticbeanstalk">Elastic Beanstalk</a> which is management service (kind of what Platform as a Service doing out there) that supporting Java, Node.js, PHP, Python, and Ruby. I think soon new language will be added (Which language you want? Maybe can requst to AWS). </p>
+<h3 id="cloud-foundry-pricing-structure">Cloud Foundry Pricing Structure</h3>
 
-<p>With recent announcement, AWS added <a href="http://aws.amazon.com/about-aws/whats-new/2013/03/12/announcing-ami-copy-for-amazon-ec2/">AMI Copy for Amazon EC2</a> that enables you to easily copy your AMIs across AWS regions. If one of your business value is able <strong>copy AMI across regions seamlessly</strong>, now this feature is not <strong>special</strong> anymore. </p>
+<p>Cloud Foundry released their pricing structure, their pricing is based on RAM usage, which is appropiate in this PaaS industry. Cloud Foundry pricing is $0.03/GB/HR. It is pay as you go model, for example, let say you allocat 1 GB odf memory to application and you running two instances for 24 hours, then your billing will include $0.03 * 1GB * 24 HR = $0.72. If you run for one month, the price is around $21.6. The pricing is competitive with other PaaS provider such as Heroku and Openshift. Using Heroku with two dynos will cost $35 where first dyno is free(equalvalent to $0.097/GB/HR). While Openshift provide free service with 3 gears (512MB of memory each).</p>
 
-<p>Not only Amazon is giant company, their low price is a killing factor that will bring your business down. Unless what you doing is a critical service that have customers willing to pay more.</p>
+<p><img src="/img/posts/cloud/cloudfoundry-pricing.png" alt="Cloud Foundry Pricing" title="Cloud Foundry Pricing" /></p>
 
-<h3 id="but-not-so-soon">But Not So Soon</h3>
-<p>However, AWS will not adding so much services that no other business can add service to their platform. PaaS business might have some worry since <a href="http://aws.amazon.com/elasticbeanstalk">Elastic Beanstalk</a> look like is compete with them. For now <a href="http://aws.amazon.com/elasticbeanstalk">Elastic Beanstalk</a> still not much features, however, you cant guarantee in next 2-3 years they wouldn&#8217;t catch up. As you can see <a href="http://www.heroku.com">Heroku</a>&#8217;s innovation in this few years, nothing much changes except they added Database as a Service using <a href="http://www.postgresql.org/">Postgresql</a> which is awesome product. But at some point AWS might add <a href="http://www.postgresql.org/">Postgresql</a> to their Database as a Service as well right? We can&#8217;t eliminate this possibility since MySQL (as RDS) is available on AWS.</p>
+<h3 id="cloud-foundry-new-marketplace">Cloud Foundry New Marketplace</h3>
 
-<h3 id="keep-innovating">Keep Innovating</h3>
-<p>Of course not only AWS compete with some provider out there, competition is everywhere. Burger King compete with McDonald, your company with other company. In IT world, you can keep innovating your product to gain/retain customers.</p>
+<p>Heroku begin as PaaS giant and provive Marketplace, now this become a trend in PaaS industry, so the PaaS will have more features and the core product still can focus on building reliable platform for developers. Cloud Foundry is no exception, they provide a Marketplace as well with some other features/add-on that are not provided in core platform. Sice Cloud Foundry just moved to paid service, their Marketplace still not much options avaiable. As the time of writing, only 7 add-ons are available, but more and paid service will coming soon.</p>
 
+<p><img src="/img/posts/cloud/cloudfoundry-marketplace.png" alt="Cloud Foundry Marketplace" title="Cloud Foundry Marketplace" /></p>
+
+<h3 id="cloud-foundry-users-and-space-managements">Cloud Foundry Users and Space Managements</h3>
+
+<p>Cloud Foundry is open source project by VMWare and most of the VMWare customers are enterprise and large companies. Thus users management is very important aspect of the platform for enterprise and large companies. Cloud Foundry Hosted provide the same users management in the cloud with web console to access. This make Cloud Foundry very suitable for small freelances to large companies. Heroku on PaaS space is quite long enough and still do not have users and space management. Probably Heroku only target small companies?</p>
+
+<p>Cloud Foundry include space management as well for managing different environments. You can think space as environment such as <em>production</em>, <em>Staging</em>, and <em>Development</em>. This allow access control to avoid anyone in the organization to start, stop production applications. This is vefy good features for enterprise companies.</p>
+
+<p><img src="/img/posts/cloud/cloudfoundry-usersmanagement.png" alt="Cloud Foundry Users and Space Management" title="Cloud Foundry Users and Space Management" /></p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>What I really like about Cloud Foundry is the ability to allocate appropriate memory to my application, most of the PaaS provides only allow fixed amout of memory, such as Heroku allow 512MB, 1GB and Openshift allow 512MB and 1GB. With the paid service of Cloud Foundry, their pricing is competitive as well. I hope Cloud Foundry keep moving forward and offer multiple regions deployment to stand up from other competitors, since multiple region deploymements will be killer features of PaaS space now.</p>
 
 </div>
 <br />
