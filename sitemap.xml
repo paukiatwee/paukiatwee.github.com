@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>/cloud/funture-of-paas/</loc>
+    <lastmod>2013-07-21</lastmod>
+
+  </url>
+  <url>
+    <loc>/prepare-production-environment-for-java-webapp/</loc>
+    <lastmod>2013-07-20</lastmod>
+
+  </url>
+  <url>
     <loc>/cloud/cloudfoundry-v2-review/</loc>
     <lastmod>2013-06-16</lastmod>
 

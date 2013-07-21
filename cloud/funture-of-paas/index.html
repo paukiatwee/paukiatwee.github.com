@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="author" content="Pau Kiat Wee" />
+    
+    
+    <meta name="robots" content="noodp, noydir" />
+    
+    
+    
+    <meta name="description" content="PaaS now is grwoing petty fast, while it is still relatively new industry, what are the features that they must have?" />
+    
+    
+    
+    <title>What are the features that PaaS providers must have? | Dream and Me</title>
+    
+    <link href="/css/style.css" rel="stylesheet">
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-33747052-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+  <body>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li><a href="/"><i class="icon-home font"></i>Home</a></li>
+              <li><a href="/app/"><i class="icon-bolt font"></i>Apps</a></li>
+              <li><a href="/privacy/"><i class="icon-lock font"></i>Privacy</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="span8">
+          <div class="well main shadow">
+            <h2>What are the features that PaaS providers must have?</h2>
+<div class="social-share"><small>21 July 2013</small>&nbsp;&nbsp;&nbsp;
+  <div class="tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://dreamandme.com/cloud/funture-of-paas/" data-text="What are the features that PaaS providers must have?">Tweet</a></div>
+  <div class="g-plusone" data-size="medium"></div>
+</div>
+
+<div class="content">
+<p>Do you want ability to push application to cloud in minutes? Scale to multiple intances wihtout configure load balancer? Deploy without downtime? The future of web development will be like this with the PaaS.</p>
+
+<p>However, since this industry still new and recently just have few PaaS providers start to enter this space to compete, the features of the PaaS still incompete and some critical features need consider when design and develop new PaaS platform. In this post, I will list down all of the features that PaaS must have in future to really make the PaaS to be the developer’s choice.</p>
+
+<!--more-->
+
+<h3 id="top-features-paas-must-have">Top Features PaaS Must Have</h3>
+
+<h4 id="memory-management">Memory Management</h4>
+
+<p>PaaS provider must have the ability to have custom memory allocation for all developers. This is especially important if you adversise your platform support multiple langauges but your platform only have one or two memory allocation options? No developers will run Java application on 512MB of memory and no one will run small NodeJS application on 512MB of memory as well. So custom memory allocation is very important for developers when they consider the patform.</p>
+
+<h4 id="pricing-model">Pricing Model</h4>
+
+<p>The main point of using PaaS is to remove the pain of manage system/os and hardware. One of the PaaS provide also the ability to scale up and down instantly. However, if the pricing model does not allow you to do that, then there is not point to market as scale instantly. For example, if the provider’s pricing model is based on subscription, then the memory limit for the plan will not allow the developers to scale up instantly if the memory allocation is reached the plan’s limit. He need to upgrade to larger plan before able to scale up again. If the spike only for last two or three days, the he will wasted his memory for the rest of the days of the month. Since he will not need that much memory/instance again. The future of PaaS should using pay as you go pricing model.</p>
+
+<h4 id="multiple-data-centers">Multiple Data Centers</h4>
+
+<p>I believe must of the PaaS customers are from US. However, the future of PaaS will be multiple data center deployments. Developers should have options for them to deploy to. Mininum of three regions avaibility is required for future. The three regions I have in mind are US, Asia, and Europe. This also important for the provider as they can distribute the load/customers across regions to <strong>avoid one down all down</strong> situation. For example, <strong>Heroku</strong> have grow too large till their load balancing is <a href="http://news.rapgenius.com/James-somers-herokus-ugly-secret-lyrics">not optimal anymore</a>  due to large number of dynos. If Heroku have multiple deployment options, the load will distibute across regions since Asia customers will deploy to Asia data center and Europe customers will deploy to Europe data centers.</p>
+
+<h4 id="deployment">Deployment</h4>
+
+<p>PaaS is suppose to ease the deployment of the applications. And one of the important ability is able to deploy without downtime. Or at least suring deployment downtime, show a custom page to visitors rather than showing provider’s error page or the domain is unreaachble.</p>
+
+<h3 id="top-players-in-paas">Top Players In PaaS</h3>
+
+<p>Here I will show the comparison of current top PaaS providers, Heroku, CloudFoundry, and OpenShift.</p>
+
+<table class="table table-striped table-condensed table-bordered table-hover">
+  <tr>
+    <th style="width: 170px; vertical-align: middle">Features</th>
+    <th>PaaS</th>
+    <th>Status</th>
+  </tr>
+  <tr>
+    <td rowspan="3">Memory Management</td>
+    <td>Heroku</td>
+    <td>512MB and 1G</td>
+  </tr>
+  <tr>
+    <td>CloudFoundry</td>
+    <td>Custom memory allocation</td>
+  </tr>
+  <tr>
+    <td>OpenShift</td>
+    <td>512MB and 1G</td>
+  </tr>
+  <tr>
+    <td rowspan="3">Pricing Model</td>
+    <td>Heroku</td>
+    <td>Pay as you go</td>
+  </tr>
+  <tr>
+    <td>CloudFoundry</td>
+    <td>Pay as you go</td>
+  </tr>
+  <tr>
+    <td>OpenShift</td>
+    <td>Pay as you go</td>
+  </tr>
+  <tr>
+    <td rowspan="3">Data Centers</td>
+    <td>Heroku</td>
+    <td>US and Europe</td>
+  </tr>
+  <tr>
+    <td>CloudFoundry</td>
+    <td>US</td>
+  </tr>
+  <tr>
+    <td>OpenShift</td>
+    <td>US</td>
+  </tr>
+  <tr>
+    <td rowspan="3">Deployment</td>
+    <td>Heroku</td>
+    <td>Have downtime and custom maintancen page</td>
+  </tr>
+  <tr>
+    <td>CloudFoundry</td>
+    <td>Have downtime</td>
+  </tr>
+  <tr>
+    <td>OpenShift</td>
+    <td>Have downtime (Only support for JBoss AS 7(hot deploy), PHP and Perl for no downtime)</td>
+  </tr>
+</table>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>Currently there is no PaaS provider that have all of the mentioned ability/features. Hope the PaaS space will be more competitive and grow to ease application management.</p>
+
+
+</div>
+<br />
+<small>Filed under <a href="/cloud/">cloud</a></small>
+<hr>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'dream-and-me';
+  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+          </div>
+        </div>
+          <div class="span4">
+          
+          <div class="minor well shadow">
+  <h3>Search</h3>
+  <form id="search">
+    <div class="input-append">
+      <input type="search" name="q" id="q" placeholder="Enter keywords..." class="input-medium"/>
+      <button class="btn" type="button">GO!</button>
+    </div>
+  </form>
+</div>
+          <div class="minor well shadow">
+  <h3>Find Me</h3>
+  <ul class="unstyled">
+    <li><i class="icon-rss"></i>Subscribe via <a href="/feed.xml" target="_blank">RSS</a></li>
+    <li><i class="icon-twitter"></i>Follow me at <a href="http://twitter.com/paukiatwee">Twitter</a></li>
+    <li><i class="icon-github"></i>Fork me at <a href="https://github.com/paukiatwee">Github</a></li>
+  </ul>
+</div>
+
+          <div class="minor well shadow">
+  <h3>Categories</h3>
+  
+    <ul class="unstyled">
+    
+      <li><a href="/github-page">github-page (2)</a></li>
+    
+      <li><a href="/app">app (1)</a></li>
+    
+      <li><a href="/cloud">cloud (7)</a></li>
+    
+      <li><a href="/administration">administration (1)</a></li>
+    
+      <li><a href="/web-development">web-development (1)</a></li>
+    
+      <li><a href="/web">web (4)</a></li>
+    
+      <li><a href="/java">java (4)</a></li>
+    
+    </ul>
+  
+</div>
+
+
+          </div>
+      </div>
+      <div class="row">
+        <div class="span12">
+          <hr />
+<footer>
+  &copy; 2012 Pau Kiat Wee
+</footer>
+
+        </div>
+      </div>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="/js/jquery.flot.js"></script>
+    <script src="/js/jquery.flot.navigate.js"></script>
+    <script src="/js/jquery.flot.resize.js"></script>
+    <script src="/js/jquery.flot.axislabels.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/lunr.min.js"></script>
+    <script src="/search.js"></script>
+    <script src="/js/front.js"></script>
+  </body>
+</html>
