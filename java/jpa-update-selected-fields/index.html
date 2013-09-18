@@ -11,11 +11,11 @@
     
     
     
-    <meta name="description" content="JEE 7 JPA 2.1 now support stored procedure natively. See how easy to use stored procedure in by example." />
+    <meta name="description" content="Learn how to use JPA 2.1 to perform partial update to Entity bean." />
     
     
     
-    <title>Java JEE7 JPA 2.1 Stored Procedure Example | Dream and Me</title>
+    <title>JPA 2.1 Update Criteria That Support Bulk/Partial Update | Dream and Me</title>
     
     <link href="/css/style.css" rel="stylesheet">
     <script type="text/javascript">
@@ -52,20 +52,20 @@
       <div class="row">
         <div class="span8">
           <div class="well main shadow">
-            <h2>Java JEE7 JPA 2.1 Stored Procedure Example</h2>
-<div class="social-share"><small>25 May 2013</small>&nbsp;&nbsp;&nbsp;
-  <div class="tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://dreamandme.com/java/java-jee7-jpa-stored-procedure-example/" data-text="Java JEE7 JPA 2.1 Stored Procedure Example">Tweet</a></div>
+            <h2>JPA 2.1 Update Criteria That Support Bulk/Partial Update</h2>
+<div class="social-share"><small>18 September 2013</small>&nbsp;&nbsp;&nbsp;
+  <div class="tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://dreamandme.com/java/jpa-update-selected-fields/" data-text="JPA 2.1 Update Criteria That Support Bulk/Partial Update">Tweet</a></div>
   <div class="g-plusone" data-size="medium"></div>
 </div>
 
 <div class="content">
-<p>JEE 7, the next release of Java Enterprice for large application will include a new enchanced JPA 2.1. JPA 2.1 now have native support for stored procedure. Folllow this blog post to know how to use soted procedure in JPA 2.1.</p>
+<p>JEE 7, the latest relase of JEE now is available with JPA 2.1. JPA 2.1 new features include Store Procedure support, and bulk update via <code>CriteriaUpdate</code>.</p>
+
+<p>In this post I will describe how to get started with JPA 2.1’s <code>CriteriaUpdate</code> to perform bulk update or partial(single field) entity update.</p>
 
 <!--more-->
 
-<p>Let get started how to use JPA 2.1 to execute stored procedure.</p>
-
-<h3 id="dependencies">Dependencies</h3>
+<h3 id="jpa-21-maven-dependencies">JPA 2.1 Maven Dependencies</h3>
 
 <p>I use maven to manage dependencies, the following <code>pom.xml</code> show the dependencies that I used:</p>
 
@@ -80,35 +80,37 @@
         &lt;artifactId&gt;org.eclipse.persistence.jpa&lt;/artifactId&gt;
         &lt;version&gt;2.5.0&lt;/version&gt;
     &lt;/dependency&gt;
-    &lt;!-- jdbc driver for Postgresql --&gt;
+    &lt;!-- jdbc driver for Hsqldb --&gt;
     &lt;dependency&gt;
-        &lt;groupId&gt;postgresql&lt;/groupId&gt;
-        &lt;artifactId&gt;postgresql&lt;/artifactId&gt;
-        &lt;version&gt;9.1-901.jdbc4&lt;/version&gt;
-        &lt;scope&gt;runtime&lt;/scope&gt;
+      	&lt;groupId&gt;org.hsqldb&lt;/groupId&gt;
+      	&lt;artifactId&gt;hsqldb&lt;/artifactId&gt;
+      	&lt;version&gt;2.3.0&lt;/version&gt;
+      	&lt;scope&gt;runtime&lt;/scope&gt;
     &lt;/dependency&gt;
 &lt;/dependencies&gt;
 </code></pre>
 
-<p>The JPA 2.1 implementation that I use is Eclipselink, which is Reference Implementation for JPA 2.1.
-Note the database that I use is Postgresql, you can use appropiate JDBC driver for your database. </p>
+<p>The JPA 2.1 implementation that I use is Eclipselink, which is Reference Implementation for JPA 2.1. Note the database that I use is HQSLDB in memory Database, you can use appropiate JDBC driver for your database.</p>
 
 <h3 id="setup-persistencexml-for-jpa-21">Setup persistence.xml for JPA 2.1</h3>
 
 <p>The <code>persistence.xml</code> for JPA 2.1 is similar with that of JPA 2.0, but with the different version of <code>xsd</code>. The following shows the persistence.xml that I used for JPA 2.1:</p>
 
 <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" 
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence                  
+&lt;persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
                                 http://java.sun.com/xml/ns/persistence/persistence_2_1.xsd"&gt;
   &lt;persistence-unit name="transactions-optional"&gt;
     &lt;provider&gt;org.eclipse.persistence.jpa.PersistenceProvider&lt;/provider&gt;
+    &lt;class&gt;me.dreamand.blog.jpa.User&lt;/class&gt;
     &lt;properties&gt;
-      &lt;property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/&gt;
-      &lt;property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/dreamandme"/&gt;
-      &lt;property name="javax.persistence.jdbc.user" value="postgres"/&gt;
-      &lt;property name="javax.persistence.jdbc.password" value="password"/&gt;
+      &lt;property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/&gt;
+      &lt;property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:dreamandme"/&gt;
+      &lt;property name="javax.persistence.jdbc.user" value="sa"/&gt;
+      &lt;property name="javax.persistence.jdbc.password" value=""/&gt;
+      &lt;property name="eclipselink.logging.level.sql" value="FINE"/&gt;
+      &lt;property name="eclipselink.logging.parameters" value="true"/&gt;
       &lt;property name="eclipselink.ddl-generation" value="create-tables"/&gt;
     &lt;/properties&gt;
   &lt;/persistence-unit&gt;
@@ -116,52 +118,65 @@ Note the database that I use is Postgresql, you can use appropiate JDBC driver f
 
 </code></pre>
 
-<h3 id="create-stored-procedure-for-postgresql">Create Stored Procedure For Postgresql</h3>
+<h3 id="java-jpa-21-bulkpartial-update">Java JPA 2.1 Bulk/Partial Update</h3>
 
-<p>In this example, I use Postgresql as database. The follows is the stored procedured that I created for this tutorial:</p>
+<p>The next step is going to the main purpose of the example, partial update the Entity’s field using JPA 2.1, the following is the example code:</p>
 
-<pre><code>CREATE FUNCTION sales_tax(subtotal float, OUT tax float) AS $$
-BEGIN
-    tax := subtotal * 0.06;
-END;
-$$ LANGUAGE plpgsql;
-</code></pre>
-
-<p>This stored procedure simple take <code>subtotal</code> as <code>IN</code> then <code>tax</code> as <code>OUT</code>.</p>
-
-<h3 id="java-jpa-21-stored-procedure-call">Java JPA 2.1 Stored Procedure Call</h3>
-
-<p>The next step is going to the main purpose of the example, call stored procedure in Java JEE7 JPA 2.1, the following is the example code:</p>
-
-<pre><code>package me.dreamand.jee7.jpa21;
+<pre><code>package me.dreamand.blog.jpa;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.ParameterMode;
 import javax.persistence.Persistence;
-import javax.persistence.StoredProcedureQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaUpdate;
+import javax.persistence.criteria.Root;
+import java.util.Date;
 
-public class App {
+public class JpaPartialUpdate {
 
     private static final String PERSISTENCE_UNIT_NAME = "transactions-optional";
-    private static EntityManagerFactory factory;
 
     public static void main(String[] args) {
-        factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
 
-        // Create call stored procedure
+        // create user
         em.getTransaction().begin();
-        StoredProcedureQuery storedProcedure = em.createStoredProcedureQuery("sales_tax");
-        // set parameters
-        storedProcedure.registerStoredProcedureParameter("subtotal", Double.class, ParameterMode.IN);
-        storedProcedure.registerStoredProcedureParameter("tax", Double.class, ParameterMode.OUT);
-        storedProcedure.setParameter("subtotal", 1f);
-        // execute SP
-        storedProcedure.execute();
-        // get result
-        Double tax = (Double)storedProcedure.getOutputParameterValue("tax");
-        System.out.println("Tax is: " + tax);
+        User user = new User();
+        user.setUsername("user@example.com");
+        user.setPassword("password");
+        user.setCreatedAt(new Date());
+        em.persist(user);
+        em.getTransaction().commit();
+        // end create user
+
+        assert user.getId() != 0;
+
+        System.out.println("Before update user Date of Birth: " + user.getDateOfBirth());
+
+        // update user date of birth
+        em.getTransaction().begin();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaUpdate&lt;User&gt; updateCriteria = cb.createCriteriaUpdate(User.class);
+        Root&lt;User&gt; root = updateCriteria.from(User.class);
+        // update dateOfBirth property
+        updateCriteria.set(root.get("dateOfBirth"), new Date());
+        // set where clause
+        updateCriteria.where(cb.equal(root.get("id"), user.getId()));
+        // update
+        int affected = em.createQuery(updateCriteria).executeUpdate();
+        System.out.println("Affected row: " + affected);
+        em.getTransaction().commit();
+        // end update user date of birth
+
+
+        // select user again to verify
+        em.getTransaction().begin();
+        em.refresh(user);
+
+        System.out.println("After update User Date of Birth: " + user.getDateOfBirth());
+
         em.getTransaction().commit();
         em.close();
     }
@@ -169,14 +184,28 @@ public class App {
 
 </code></pre>
 
-<p>Run the <code>main</code> method, the console will output the following text:</p>
+<p>After run the main class, the following shows the output:</p>
 
-<pre><code>Tax is: 0.06
+<pre><code>INSERT INTO users (CREATED_AT, DATEOFBIRTH, PASSWORD, USERNAME) VALUES (?, ?, ?, ?)
+	bind =&gt; [2013-09-18 10:26:08.43, null, password, user@example.com]
+
+Before update user Date of Birth: null
+
+UPDATE users SET DATEOFBIRTH = ? WHERE (ID = ?)
+	bind =&gt; [2013-09-18, 1]
+
+Affected row: 1
+
+SELECT ID, CREATED_AT, DATEOFBIRTH, PASSWORD, USERNAME FROM users WHERE (ID = ?)
+	bind =&gt; [1]
+After update User Date of Birth: Wed Sep 18 00:00:00 EDT 2013
 </code></pre>
+
+<p>In the example code, I make update to the user by using <code>id</code>, you can easily use other condition that allow bulk update to the data.</p>
 
 <h3 id="conclusion">Conclusion</h3>
 
-<p>With the new Java JEE7 JPA 2.1 release bring stored procedure support to the next level without using JDBC low level API. This bring JEE7 to the next most awaited release of JEE.</p>
+<p>With JPA 2.1, now the API is support bulk/partial update while previously the partial update must select the enitity from table and update the fields then save back to database. Which will cause performance issue and maintenance issue as well.</p>
 
 </div>
 <br />
