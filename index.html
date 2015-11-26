@@ -1,59 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <meta name="author" content="Pau Kiat Wee" />
-    
-    
-    <meta name="robots" content="noodp, noydir" />
-    
-    
-    
-    <meta name="description" content="Learn how to be a better programmer using technologies, a blog by geek" />
-    
-    
-    
-    <title>Welcome | Dream and Me</title>
-    
-    <link href="/css/style.css" rel="stylesheet">
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-33747052-1']);
-      _gaq.push(['_trackPageview']);
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
-  </head>
-  <body>
-  <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li><a href="/"><i class="icon-home font"></i>Home</a></li>
-              <li><a href="/app/"><i class="icon-bolt font"></i>Apps</a></li>
-              <li><a href="/privacy/"><i class="icon-lock font"></i>Privacy</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Pau Kiat Wee" />
+  
+  
+  <meta name="robots" content="noodp, noydir" />
+  
+  
+  
+  <meta name="description" content="Learn how to be a better programmer using technologies, a blog by geek" />
+  
+  
+  
+  <title>Welcome | Dream and Me</title>
+  
+  <link href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/fontawesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-33747052-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body>
+<nav class="navbar navbar-static-top navbar-inverse">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Dream And Me</a>
     </div>
-    <div class="container">
-      <div class="row">
-        <div class="span8">
-          <div class="well main shadow">
-            
-  <h2><a href="/java/java-websocket-custom-decoder/" title="Java Websocket API With Custom Decoder" rel="bookmark">Java Websocket API With Custom Decoder</a></h2>
+
+    <div class="collapse navbar-collapse" id="navbar">
+      <ul class="nav navbar-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/app/">Apps</a></li>
+        <li><a href="/privacy/">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="well main shadow">
+        
+<article>
+  <div class="post-title">
+    <h2><a href="/java/java-websocket-custom-decoder/" title="Java Websocket API With Custom Decoder" rel="bookmark">Java Websocket API With Custom Decoder</a></h2>
+  </div>
   <small>27 October 2013</small>
   <div class="content">
     <p>Java JEE7 now support Websocket with realtime bidirection communication from server to clients. The websocket API provide extendsible API to build custom decoder to decode message from client.</p>
@@ -64,18 +73,28 @@
   </div>
   <hr />
 
-  <h2><a href="/java/jpa-update-selected-fields/" title="JPA 2.1 Update Criteria That Support Bulk/Partial Update" rel="bookmark">JPA 2.1 Update Criteria That Support Bulk/Partial Update</a></h2>
+</article>
+
+<article>
+  <div class="post-title">
+    <h2><a href="/java/jpa-update-selected-fields/" title="JPA 2.1 Update Criteria That Support Bulk/Partial Update" rel="bookmark">JPA 2.1 Update Criteria That Support Bulk/Partial Update</a></h2>
+  </div>
   <small>18 September 2013</small>
   <div class="content">
-    <p>JEE 7, the latest relase of JEE now is available with JPA 2.1. JPA 2.1 new features include Store Procedure support, and bulk update via <code>CriteriaUpdate</code>.</p>
+    <p>JEE 7, the latest relase of JEE now is available with JPA 2.1. JPA 2.1 new features include Store Procedure support, and bulk update via <code class="highlighter-rouge">CriteriaUpdate</code>.</p>
 
-<p>In this post I will describe how to get started with JPA 2.1’s <code>CriteriaUpdate</code> to perform bulk update or partial(single field) entity update.</p>
+<p>In this post I will describe how to get started with JPA 2.1’s <code class="highlighter-rouge">CriteriaUpdate</code> to perform bulk update or partial(single field) entity update.</p>
 
 <p class='more'><a href='/java/jpa-update-selected-fields/'>Continue read &#9658;</a></p>
   </div>
   <hr />
 
-  <h2><a href="/java/deploy-springframwork-hibernate-to-cloudfoundy/" title="Deploy Springframeworka and JPA 2 Quickstart to Cloud Foundry in Minutes" rel="bookmark">Deploy Springframeworka and JPA 2 Quickstart to Cloud Foundry in Minutes</a></h2>
+</article>
+
+<article>
+  <div class="post-title">
+    <h2><a href="/java/deploy-springframwork-hibernate-to-cloudfoundy/" title="Deploy Springframeworka and JPA 2 Quickstart to Cloud Foundry in Minutes" rel="bookmark">Deploy Springframeworka and JPA 2 Quickstart to Cloud Foundry in Minutes</a></h2>
+  </div>
   <small>09 August 2013</small>
   <div class="content">
     <p>Get started with complex Java <a href="http://www.springsource.org">Spring Framework</a> and JPA 2 (<a href="http://www.hibernate.org">Hibernate</a>) is slow and time consuming. While Ruby On Rails provide tool to generate project in seconds to quickly start a new Rails application, why not build a Java quick start template that alrady configured all necessary configurations? Getting started with Java web development is tedious and time consuming is not execuse anymore. I will describe how to get started with Java web development in minutes and deploy to <a href="http:://cloudfoundry.com">Cloud Foundry</a>.</p>
@@ -84,7 +103,12 @@
   </div>
   <hr />
 
-  <h2><a href="/cloud/future-of-paas/" title="What are the features that PaaS providers must have?" rel="bookmark">What are the features that PaaS providers must have?</a></h2>
+</article>
+
+<article>
+  <div class="post-title">
+    <h2><a href="/cloud/future-of-paas/" title="What are the features that PaaS providers must have?" rel="bookmark">What are the features that PaaS providers must have?</a></h2>
+  </div>
   <small>21 July 2013</small>
   <div class="content">
     <p>Do you want ability to push application to cloud in minutes? Scale to multiple intances wihtout configure load balancer? Deploy without downtime? The future of web development will be like this with the PaaS.</p>
@@ -95,7 +119,12 @@
   </div>
   <hr />
 
-  <h2><a href="/cloud/cloudfoundry-v2-review/" title="Cloud Foundry V2 Hosted Developer Edition Review" rel="bookmark">Cloud Foundry V2 Hosted Developer Edition Review</a></h2>
+</article>
+
+<article>
+  <div class="post-title">
+    <h2><a href="/cloud/cloudfoundry-v2-review/" title="Cloud Foundry V2 Hosted Developer Edition Review" rel="bookmark">Cloud Foundry V2 Hosted Developer Edition Review</a></h2>
+  </div>
   <small>16 June 2013</small>
   <div class="content">
     <p>Cloud Foundry just moved to general available as paid service witn trial of 60 days of 2GB of RAM. During developer preview of Cloud Foundry, they operate under VMWare and now moved to Pivotal as paid service. Let see what CLoud Foundry provide to developers in this new raising PaaS industry.</p>
@@ -104,7 +133,12 @@
   </div>
   <hr />
 
-  <h2><a href="/java/jee7-websocket-decode-custom-message/" title="Java JEE7 JAX-RS 2.0 Client Example" rel="bookmark">Java JEE7 JAX-RS 2.0 Client Example</a></h2>
+</article>
+
+<article>
+  <div class="post-title">
+    <h2><a href="/java/jee7-websocket-decode-custom-message/" title="Java JEE7 JAX-RS 2.0 Client Example" rel="bookmark">Java JEE7 JAX-RS 2.0 Client Example</a></h2>
+  </div>
   <small>01 June 2013</small>
   <div class="content">
     <p>JEE6 JAX-RS 1.0 only include API for creating RESTful server application but no API for RESTFul client to consume the resources. <a href="http://jersey.java.net">Jersey</a>, <a href="http://www.jboss.org/resteasy">RESTEasy</a> provide different API and make the client code vendor dependent. Now JEE7 <a href="http://jcp.org/en/jsr/detail?id=339">JAX-RS 2.0</a> include Client API, which make the API vendor independent. In this blog, I will write the example of using <a href="http://jcp.org/en/jsr/detail?id=339">JAX-RS 2.0</a>.</p>
@@ -113,7 +147,12 @@
   </div>
   <hr />
 
-  <h2><a href="/java/java-jee7-jpa-stored-procedure-example/" title="Java JEE7 JPA 2.1 Stored Procedure Example" rel="bookmark">Java JEE7 JPA 2.1 Stored Procedure Example</a></h2>
+</article>
+
+<article>
+  <div class="post-title">
+    <h2><a href="/java/java-jee7-jpa-stored-procedure-example/" title="Java JEE7 JPA 2.1 Stored Procedure Example" rel="bookmark">Java JEE7 JPA 2.1 Stored Procedure Example</a></h2>
+  </div>
   <small>25 May 2013</small>
   <div class="content">
     <p>JEE 7, the next release of Java Enterprice for large application will include a new enchanced JPA 2.1. JPA 2.1 now have native support for stored procedure. Folllow this blog post to know how to use soted procedure in JPA 2.1.</p>
@@ -122,7 +161,12 @@
   </div>
   <hr />
 
-  <h2><a href="/java/jee7-websocket-example/" title="JEE7 WebSocket Example" rel="bookmark">JEE7 WebSocket Example</a></h2>
+</article>
+
+<article>
+  <div class="post-title">
+    <h2><a href="/java/jee7-websocket-example/" title="JEE7 WebSocket Example" rel="bookmark">JEE7 WebSocket Example</a></h2>
+  </div>
   <small>18 May 2013</small>
   <div class="content">
     <p>JEE 7, the next release of Java Enterprice for large application will include a standard WebSocket API for create realtime communication channel over a single TCP connection. The realtime communication allow server to push message to clients in realtime. This tutorial will teach step by step to create a realtime chat program using JEE7 WebSocket API. There are two ways to using  JEE7’s WebSocket API, one is using annotations and another is using normal OO concept to extend classes. This tutorial will mainly focus on using annotations based API.</p>
@@ -131,7 +175,12 @@
   </div>
   <hr />
 
-  <h2><a href="/web/better-url-for-seo/" title="Better URL for SEO for E-Commerce and Dynamic Website" rel="bookmark">Better URL for SEO for E-Commerce and Dynamic Website</a></h2>
+</article>
+
+<article>
+  <div class="post-title">
+    <h2><a href="/web/better-url-for-seo/" title="Better URL for SEO for E-Commerce and Dynamic Website" rel="bookmark">Better URL for SEO for E-Commerce and Dynamic Website</a></h2>
+  </div>
   <small>11 May 2013</small>
   <div class="content">
     <p>Want better SEO for your e-commerce and dynamic website? Want to increase organic search for your e-commerce and dynamic website? This post will shows how to build better URL for your website and increase sell and better page impression.</p>
@@ -140,7 +189,12 @@
   </div>
   <hr />
 
-  <h2><a href="/java/jee7-json-example/" title="JEE7 JSON API Example" rel="bookmark">JEE7 JSON API Example</a></h2>
+</article>
+
+<article>
+  <div class="post-title">
+    <h2><a href="/java/jee7-json-example/" title="JEE7 JSON API Example" rel="bookmark">JEE7 JSON API Example</a></h2>
+  </div>
   <small>24 April 2013</small>
   <div class="content">
     <p>JEE 7, the next release of Java Enterprice Edition for large application will include a standard JSON API without using third party JSON API such as [JSON.org][jsobn-org]. Is time to use standard API for Java web development.</p>
@@ -149,21 +203,26 @@
   </div>
   <hr />
 
+</article>
 
-          </div>
-        </div>
-          <div class="span4">
-          
-          <div class="minor well shadow">
+
+      </div>
+    </div>
+    <div class="col-md-4">
+      
+      <div class="minor well shadow">
   <h3>Search</h3>
   <form id="search">
-    <div class="input-append">
-      <input type="search" name="q" id="q" placeholder="Enter keywords..." class="input-medium"/>
-      <button class="btn" type="button">GO!</button>
+    <div class="input-group">
+      <input type="search" name="q" id="q" placeholder="Enter keywords..." class="form-control"/>
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button"><span class="fa fa-search"></span> Search</button>
+      </span>
     </div>
   </form>
 </div>
-          <div class="minor well shadow">
+
+      <div class="minor well shadow">
   <h3>Find Me</h3>
   <ul class="unstyled">
     <li><i class="icon-rss"></i>Subscribe via <a href="/feed.xml" target="_blank">RSS</a></li>
@@ -172,7 +231,7 @@
   </ul>
 </div>
 
-          <div class="minor well shadow">
+      <div class="minor well shadow">
   <h3>Categories</h3>
   
     <ul class="unstyled">
@@ -196,26 +255,25 @@
 </div>
 
 
-          </div>
-      </div>
-      <div class="row">
-        <div class="span12">
-          <hr />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <hr />
 <footer>
   &copy; 2012 Pau Kiat Wee
 </footer>
 
-        </div>
-      </div>
     </div>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script src="/js/jquery.flot.js"></script>
-    <script src="/js/jquery.flot.navigate.js"></script>
-    <script src="/js/jquery.flot.resize.js"></script>
-    <script src="/js/jquery.flot.axislabels.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/lunr.min.js"></script>
-    <script src="/search.js"></script>
-    <script src="/js/front.js"></script>
-  </body>
+  </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="/js/jquery.flot.js"></script>
+<script src="/js/jquery.flot.navigate.js"></script>
+<script src="/js/jquery.flot.resize.js"></script>
+<script src="/js/jquery.flot.axislabels.js"></script>
+<script src="https://cdn.jsdelivr.net/lunr/0.6.0/lunr.min.js"></script>
+<script src="/search.js"></script>
+<script src="/js/front.js"></script>
+</body>
 </html>

@@ -1,58 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <meta name="author" content="Pau Kiat Wee" />
-    
-    
-    <meta name="robots" content="noodp, noydir" />
-    
-    
-    
-    <meta name="description" content="How to bring powerfull fulltext to jekyll static generated site? Using lunc javascript framewor, you can bring the fulltext search to your blog in minutes." />
-    
-    
-    
-    <title>Fulltext Search on Jekyll Site | Dream and Me</title>
-    
-    <link href="/css/style.css" rel="stylesheet">
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-33747052-1']);
-      _gaq.push(['_trackPageview']);
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
-  </head>
-  <body>
-  <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li><a href="/"><i class="icon-home font"></i>Home</a></li>
-              <li><a href="/app/"><i class="icon-bolt font"></i>Apps</a></li>
-              <li><a href="/privacy/"><i class="icon-lock font"></i>Privacy</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Pau Kiat Wee" />
+  
+  
+  <meta name="robots" content="noodp, noydir" />
+  
+  
+  
+  <meta name="description" content="How to bring powerfull fulltext to jekyll static generated site? Using lunc javascript framewor, you can bring the fulltext search to your blog in minutes." />
+  
+  
+  
+  <title>Fulltext Search on Jekyll Site | Dream and Me</title>
+  
+  <link href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/fontawesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-33747052-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body>
+<nav class="navbar navbar-static-top navbar-inverse">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Dream And Me</a>
     </div>
-    <div class="container">
-      <div class="row">
-        <div class="span8">
-          <div class="well main shadow">
-            <h2>Fulltext Search on Jekyll Site</h2>
+
+    <div class="collapse navbar-collapse" id="navbar">
+      <ul class="nav navbar-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/app/">Apps</a></li>
+        <li><a href="/privacy/">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="well main shadow">
+        <h2>Fulltext Search on Jekyll Site</h2>
 <div class="social-share"><small>06 March 2013</small>&nbsp;&nbsp;&nbsp;
   <div class="tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://dreamandme.com/web/fulltext-search-at-jekyll-site/" data-text="Fulltext Search on Jekyll Site">Tweet</a></div>
   <div class="g-plusone" data-size="medium"></div>
@@ -66,24 +72,83 @@
 <p>Before get started, you need download <a href="https://github.com/olivernn/lunr.js">lunr</a> at https://github.com/olivernn/lunr.js and include in your blog js folder.</p>
 
 <h3 id="index-content">Index Content</h3>
-<p>Before doing full text search, you need to index your blog content. First, create a <code>post.json</code> file in <code>_includes</code> folder as template to render post document:</p>
+<p>Before doing full text search, you need to index your blog content. First, create a <code class="highlighter-rouge">post.json</code> file in <code class="highlighter-rouge">_includes</code> folder as template to render post document:</p>
 
-<pre><code>{
-  "id"    : "http://dreamand.me{{ post.url }}",
-  "title"   : "{{ post.title }}",
-  "content" : "{{ post.content | strip_html | strip_newlines | remove:'"'  }}"
-}
-</code></pre>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="s2">"http://dreamand.me"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"title"</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"content"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
 
-<p>After that, create a <code>search.js</code> at the root of the blog to hold the blog contents:</p>
+<p>After that, create a <code class="highlighter-rouge">search.js</code> at the root of the blog to hold the blog contents:</p>
 
-<pre><code>---
+<div class="highlighter-rouge"><pre class="highlight"><code>---
 ---
 var docs = 
 [ 
-{% for post in site.posts limit:10 %}
-  {% include post.json %},
-{% endfor %}
+
+  {
+  "id"    : "http://dreamand.me/java/java-websocket-custom-decoder/",
+  "title"   : "Java Websocket API With Custom Decoder",
+  "content" : "Java JEE7 now support Websocket with realtime bidirection communication from server to clients. The websocket API provide extendsible API to build custom decoder to decode message from client.In this post, you will learn how to use java websocket API to build custom decoder.### Java WebSocket Maven DependenciesI use maven to manage dependencies, the following `pom.xml` show the dependencies that I used:~~~          javax      javaee-web-api      7.0      provided                  org.glassfish      javax.json      1.0      runtime    ~~~The example is using the coordinate of the mouse clicks and will send as `JSON` to server, the POJO class:~~~public class Coordinate {    private int x;    private int y;    public void setX(int x) {        this.x = x;    }    public int getX() {        return x;    }    public void setY(int y) {        this.y = y;    }    public int getY() {        return y;    }    @Override    public String toString() {        final StringBuilder sb = new StringBuilder(Coordinate{);        sb.append(x=).append(x);        sb.append(, y=).append(y);        sb.append('}');        return sb.toString();    }}~~~### Decoders to Convert WebSocket Messages into Java ObjectsTo implement decoder, the following interface should be used:* `Decoder.Text` for text messages* `Decoder.Binary` for binary messagesHere is the example convert `JSON` string to `Coordinate` object:~~~import javax.json.Json;import javax.json.JsonObject;import javax.websocket.DecodeException;import javax.websocket.Decoder;import javax.websocket.EndpointConfig;import java.io.StringReader;public class CoordinateDecoder implements Decoder.Text {    /**     * convert {x:x, y: y} to Coordinate POJO     */    @Override    public Coordinate decode(String s) throws DecodeException {        JsonObject json = Json.createReader(new StringReader(s)).readObject();        Coordinate coordinate = new Coordinate();        coordinate.setX(json.getInt(x));        coordinate.setY(json.getInt(y));        return coordinate;    }    /**     *  whether the given String can be decoded into an object of type T     */    @Override    public boolean willDecode(String s) {        return true;    }    @Override    public void init(EndpointConfig endpointConfig) {    }    @Override    public void destroy() {    }}~~~After implemented custom decoder, now is time to implement the websocket server side endpoint:~~~import javax.websocket.*;import javax.websocket.server.ServerEndpoint;import java.io.IOException;import java.util.logging.Level;import java.util.logging.Logger;@ServerEndpoint(value = /ws, decoders = {CoordinateDecoder.class})public class WebsocketDecoderExampleServer {    private static final Logger LOGGER = Logger.getLogger(WebsocketDecoderExampleServer.class.getName());    @OnOpen    public void onOpen(Session session) {        LOGGER.log(Level.INFO, New connection with client: {0},                session.getId());    }    @OnMessage    public String onMessage(Coordinate coordinate, Session session) throws IOException, EncodeException {        LOGGER.log(Level.INFO, New message from Client [{0}]: {1},                new Object[] {session.getId(), coordinate});        return Server received [ + coordinate + ];    }    @OnClose    public void onClose(Session session) {        LOGGER.log(Level.INFO, Close connection for client: {0},                session.getId());    }    @OnError    public void onError(Throwable exception, Session session) {        LOGGER.log(Level.INFO, Error for client: {0}, session.getId());    }}~~~The following code is for client side:~~~          .canvas {      width: 500px;      height: 500px;      border: 2px solid #ADFFA6;    }    .server {      border-top: 1px solid #a2a2a2;      border-left: 1px solid #a2a2a2;      border-right: 1px solid #a2a2a2;      border-bottom: 1px solid  #FFA6A6;      padding: 5px;    }    #output {      height: 500px;      overflow-y: scroll;    }                                ~~~### Running Java Websocket App with Custom DecoderWhen run the app and browse to [localhost][localhost], click on the green area.Here are the screenshots for example app:![Initial load page](/img/posts/jee7/websocket-java-custom-type-1.png Initial load page)![Server reply message](/img/posts/jee7/websocket-java-custom-type-2.png Server reply message)Console logs:~~~Oct 27, 2013 10:44:56 AM WebsocketDecoderExampleServer onOpenINFO: New connection with client: websocket-1Oct 27, 2013 10:47:08 AM WebsocketDecoderExampleServer onMessageINFO: New message from Client [websocket-1]: Coordinate{x=111, y=13}Oct 27, 2013 10:47:12 AM WebsocketDecoderExampleServer onMessageINFO: New message from Client [websocket-1]: Coordinate{x=315, y=19}Oct 27, 2013 10:47:13 AM WebsocketDecoderExampleServer onMessageINFO: New message from Client [websocket-1]: Coordinate{x=552, y=21}~~~[localhost]: http://localhost:8080"
+},
+
+  {
+  "id"    : "http://dreamand.me/java/jpa-update-selected-fields/",
+  "title"   : "JPA 2.1 Update Criteria That Support Bulk/Partial Update",
+  "content" : "JEE 7, the latest relase of JEE now is available with JPA 2.1. JPA 2.1 new features include Store Procedure support, and bulk update via `CriteriaUpdate`.In this post I will describe how to get started with JPA 2.1's `CriteriaUpdate` to perform bulk update or partial(single field) entity update.### JPA 2.1 Maven DependenciesI use maven to manage dependencies, the following `pom.xml` show the dependencies that I used:~~~            org.eclipse.persistence        javax.persistence        2.1.0                org.eclipse.persistence        org.eclipse.persistence.jpa        2.5.0                  	org.hsqldb      	hsqldb      	2.3.0      	runtime    ~~~The JPA 2.1 implementation that I use is Eclipselink, which is Reference Implementation for JPA 2.1. Note the database that I use is HQSLDB in memory Database, you can use appropiate JDBC driver for your database.### Setup persistence.xml for JPA 2.1The `persistence.xml` for JPA 2.1 is similar with that of JPA 2.0, but with the different version of `xsd`. The following shows the persistence.xml that I used for JPA 2.1:~~~      org.eclipse.persistence.jpa.PersistenceProvider    me.dreamand.blog.jpa.User                                                    ~~~### Java JPA 2.1 Bulk/Partial UpdateThe next step is going to the main purpose of the example, partial update the Entity's field using JPA 2.1, the following is the example code:~~~package me.dreamand.blog.jpa;import javax.persistence.EntityManager;import javax.persistence.EntityManagerFactory;import javax.persistence.Persistence;import javax.persistence.criteria.CriteriaBuilder;import javax.persistence.criteria.CriteriaUpdate;import javax.persistence.criteria.Root;import java.util.Date;public class JpaPartialUpdate {    private static final String PERSISTENCE_UNIT_NAME = transactions-optional;    public static void main(String[] args) {        EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);        EntityManager em = factory.createEntityManager();        // create user        em.getTransaction().begin();        User user = new User();        user.setUsername(user@example.com);        user.setPassword(password);        user.setCreatedAt(new Date());        em.persist(user);        em.getTransaction().commit();        // end create user        assert user.getId() != 0;        System.out.println(Before update user Date of Birth:  + user.getDateOfBirth());        // update user date of birth        em.getTransaction().begin();        CriteriaBuilder cb = em.getCriteriaBuilder();        CriteriaUpdate updateCriteria = cb.createCriteriaUpdate(User.class);        Root root = updateCriteria.from(User.class);        // update dateOfBirth property        updateCriteria.set(root.get(dateOfBirth), new Date());        // set where clause        updateCriteria.where(cb.equal(root.get(id), user.getId()));        // update        int affected = em.createQuery(updateCriteria).executeUpdate();        System.out.println(Affected row:  + affected);        em.getTransaction().commit();        // end update user date of birth        // select user again to verify        em.getTransaction().begin();        em.refresh(user);        System.out.println(After update User Date of Birth:  + user.getDateOfBirth());        em.getTransaction().commit();        em.close();    }}~~~After run the main class, the following shows the output:~~~INSERT INTO users (CREATED_AT, DATEOFBIRTH, PASSWORD, USERNAME) VALUES (?, ?, ?, ?)	bind =&gt; [2013-09-18 10:26:08.43, null, password, user@example.com]Before update user Date of Birth: nullUPDATE users SET DATEOFBIRTH = ? WHERE (ID = ?)	bind =&gt; [2013-09-18, 1]Affected row: 1SELECT ID, CREATED_AT, DATEOFBIRTH, PASSWORD, USERNAME FROM users WHERE (ID = ?)	bind =&gt; [1]After update User Date of Birth: Wed Sep 18 00:00:00 EDT 2013~~~In the example code, I make update to the user by using `id`, you can easily use other condition that allow bulk update to the data.### ConclusionWith JPA 2.1, now the API is support bulk/partial update while previously the partial update must select the enitity from table and update the fields then save back to database. Which will cause performance issue and maintenance issue as well."
+},
+
+  {
+  "id"    : "http://dreamand.me/java/deploy-springframwork-hibernate-to-cloudfoundy/",
+  "title"   : "Deploy Springframeworka and JPA 2 Quickstart to Cloud Foundry in Minutes",
+  "content" : "Get started with complex Java [Spring Framework][spring] and JPA 2 ([Hibernate][hibernate]) is slow and time consuming. While Ruby On Rails provide tool to generate project in seconds to quickly start a new Rails application, why not build a Java quick start template that alrady configured all necessary configurations? Getting started with Java web development is tedious and time consuming is not execuse anymore. I will describe how to get started with Java web development in minutes and deploy to [Cloud Foundry][cf].### Prerequisite* [Cloud Foundry][cf] Account* `cf` CLI installed* `maven` installed* `git` installed### Clone ProjectI created [webapp-bootstrap][Webapp-Bootstrap] using [Spring Framework][spring], JPA 2 ([Hibernate][hibernate]) and [Twitter Bootstrap][tb] template and available on Github. You can clone into your machine to get started:~~~git clone https://github.com/paukiatwee/webapp-bootstrap.git~~~### Start Local Web ServerThe template I created already configured a jetty server to developers can quickly start development straight aways instead of need to setup tomcat/jboss locally. To start the embadded jetty server, just run the followings command:~~~cd webapp-bootstrapsh run.sh # or run.bat on Windows~~~I writed a shell/bat script that start embadded jetty server, underlaying it is executing:~~~mvn clean compile jetty:run~~~just to save few keystrokes. :)Wait the maven download all nessasery jars then you can browse to [http://localhost:8080](http://localhost:8080) to view the app. Easy and fast!![Webapp Bootstrap](/img/posts/webapp-bootstrap.png Webapp Bootstrap)### Packaging WarBefore deploy to Cloud Foundry, you will need to package Java web application as a war file. Packaging war file using maven is easy:~~~mvn clean package~~~After the command is completed, the war file is generated into `target` folder. Now you can start deploy to Cloud Foundry!### Deploy to Cloud FoundryBefore you deploy to Cloud Foundry, you must login using `cf` tool:~~~cd targetcf logintarget: https://api.run.pivotal.ioEmail&gt; you@example.comPassword&gt; ***********Authenticating... OK~~~After autheticated, you can deploy webapp-bootstrap to Cloud Foundry~~~cf push webapp-bootstrapInstances&gt; 11: 128M2: 256M3: 512M4: 1GMemory Limit&gt; 4   Creating webapp-bootstrap... OK1: webapp-bootstrap2: noneSubdomain&gt; webapp-bootstrap1: cfapps.io2: noneDomain&gt; cfapps.ioCreating route webapp-bootstrap.cfapps.io... OKBinding webapp-bootstrap.cfapps.io to webapp-bootstrap... OKCreate services for application?&gt; nBind other services to application?&gt; nSave configuration?&gt; nUploading webapp-bootstrap... OKStarting webapp-bootstrap... OK-----&gt; Downloaded app package (24M)Downloading JDK...Copying openjdk-1.7.0_25.tar.gz from the buildpack cache ...Unpacking JDK to .jdkDownloading Tomcat: apache-tomcat-7.0.41.tar.gzCopying apache-tomcat-7.0.41.tar.gz from the buildpack cache ...Unpacking Tomcat to .tomcatCopying mysql-connector-java-5.1.12.jar from the buildpack cache ...Copying postgresql-9.0-801.jdbc4.jar from the buildpack cache ...Downloading auto-reconfiguration-0.7.1.jar from https://s3.amazonaws.com/maven.springframework.org/milestone/org/cloudfoundry/auto-reconfiguration/0.7.1 ...-----&gt; Downloaded app package (24M)Downloading JDK...Copying openjdk-1.7.0_25.tar.gz from the buildpack cache ...Unpacking JDK to .jdkDownloading Tomcat: apache-tomcat-7.0.41.tar.gzCopying apache-tomcat-7.0.41.tar.gz from the buildpack cache ...Unpacking Tomcat to .tomcatCopying mysql-connector-java-5.1.12.jar from the buildpack cache ...Copying postgresql-9.0-801.jdbc4.jar from the buildpack cache ...Downloading auto-reconfiguration-0.7.1.jar from https://s3.amazonaws.com/maven.springframework.org/milestone/org/cloudfoundry/auto-reconfiguration/0.7.1 ...-----&gt; Uploading droplet (62M)Checking status of app 'webapp-bootstrap'....  0 of 1 instances running (1 starting)  0 of 1 instances running (1 starting)  0 of 1 instances running (1 starting)  0 of 1 instances running (1 starting)  0 of 1 instances running (1 starting)  1 of 1 instances running (1 running)Push successful! App 'webapp-bootstrap' available at http://webapp-bootstrap.cfapps.io~~~After push successfuly, browse to [http://YOUR_APP.cfapps.io](http://YOUR_APP.cfapps.io) to view the deployed app.### ConclusionIn this post, I deplyo an Java web app to [Cloud Foundry][cf] in minutes without writing any code. That is how easy to deploy Java application to the cloud if you prepare the template to production and developer friendly! Any question can tweet/follow me [@paukiatwee](https://twitter.com/paukiatwee).[spring]: http://www.springsource.org[hibernate]: http://www.hibernate.org[tb]: http://getbootstrap.com[cf]: http:://cloudfoundry.com[webapp-bootstrap]: https://github.com/paukiatwee/webapp-bootstrap[localhost]: http://localhost:8080"
+},
+
+  {
+  "id"    : "http://dreamand.me/cloud/future-of-paas/",
+  "title"   : "What are the features that PaaS providers must have?",
+  "content" : "Do you want ability to push application to cloud in minutes? Scale to multiple intances wihtout configure load balancer? Deploy without downtime? The future of web development will be like this with the PaaS.However, since this industry still new and recently just have few PaaS providers start to enter this space to compete, the features of the PaaS still incompete and some critical features need consider when design and develop new PaaS platform. In this post, I will list down all of the features that PaaS must have in future to really make the PaaS to be the developer's choice.### Top Features PaaS Must Have#### Memory ManagementPaaS provider must have the ability to have custom memory allocation for all developers. This is especially important if you adversise your platform support multiple langauges but your platform only have one or two memory allocation options? No developers will run Java application on 512MB of memory and no one will run small NodeJS application on 512MB of memory as well. So custom memory allocation is very important for developers when they consider the patform.#### Pricing ModelThe main point of using PaaS is to remove the pain of manage system/os and hardware. One of the PaaS provide also the ability to scale up and down instantly. However, if the pricing model does not allow you to do that, then there is not point to market as scale instantly. For example, if the provider's pricing model is based on subscription, then the memory limit for the plan will not allow the developers to scale up instantly if the memory allocation is reached the plan's limit. He need to upgrade to larger plan before able to scale up again. If the spike only for last two or three days, the he will wasted his memory for the rest of the days of the month. Since he will not need that much memory/instance again. The future of PaaS should using pay as you go pricing model.#### Multiple Data CentersI believe must of the PaaS customers are from US. However, the future of PaaS will be multiple data center deployments. Developers should have options for them to deploy to. Mininum of three regions avaibility is required for future. The three regions I have in mind are US, Asia, and Europe. This also important for the provider as they can distribute the load/customers across regions to **avoid one down all down** situation. For example, **Heroku** have grow too large till their load balancing is [not optimal anymore][heroku]  due to large number of dynos. If Heroku have multiple deployment options, the load will distibute across regions since Asia customers will deploy to Asia data center and Europe customers will deploy to Europe data centers.#### DeploymentPaaS is suppose to ease the deployment of the applications. And one of the important ability is able to deploy without downtime. Or at least suring deployment downtime, show a custom page to visitors rather than showing provider's error page or the domain is unreaachble.### Top Players In PaaSHere I will show the comparison of current top PaaS providers, Heroku, CloudFoundry, and OpenShift.      Features    PaaS    Status        Memory Management    Heroku    512MB and 1G        CloudFoundry    Custom memory allocation        OpenShift    512MB and 1G        Pricing Model    Heroku    Pay as you go        CloudFoundry    Pay as you go        OpenShift    Pay as you go        Data Centers    Heroku    US and Europe        CloudFoundry    US        OpenShift    US        Deployment    Heroku    Have downtime and custom maintancen page        CloudFoundry    Have downtime        OpenShift    Have downtime (Only support for JBoss AS 7(hot deploy), PHP and Perl for no downtime)  ### ConclusionCurrently there is no PaaS provider that have all of the mentioned ability/features. Hope the PaaS space will be more competitive and grow to ease application management.[heroku]: http://news.rapgenius.com/James-somers-herokus-ugly-secret-lyrics"
+},
+
+  {
+  "id"    : "http://dreamand.me/cloud/cloudfoundry-v2-review/",
+  "title"   : "Cloud Foundry V2 Hosted Developer Edition Review",
+  "content" : "Cloud Foundry just moved to general available as paid service witn trial of 60 days of 2GB of RAM. During developer preview of Cloud Foundry, they operate under VMWare and now moved to Pivotal as paid service. Let see what CLoud Foundry provide to developers in this new raising PaaS industry.### Cloud Foundry Pricing StructureCloud Foundry released their pricing structure, their pricing is based on RAM usage, which is appropiate in this PaaS industry. Cloud Foundry pricing is $0.03/GB/HR. It is pay as you go model, for example, let say you allocat 1 GB odf memory to application and you running two instances for 24 hours, then your billing will include $0.03 * 1GB * 24 HR = $0.72. If you run for one month, the price is around $21.6. The pricing is competitive with other PaaS provider such as Heroku and Openshift. Using Heroku with two dynos will cost $35 where first dyno is free(equalvalent to $0.097/GB/HR). While Openshift provide free service with 3 gears (512MB of memory each).![Cloud Foundry Pricing](/img/posts/cloud/cloudfoundry-pricing.png Cloud Foundry Pricing)### Cloud Foundry New MarketplaceHeroku begin as PaaS giant and provive Marketplace, now this become a trend in PaaS industry, so the PaaS will have more features and the core product still can focus on building reliable platform for developers. Cloud Foundry is no exception, they provide a Marketplace as well with some other features/add-on that are not provided in core platform. Sice Cloud Foundry just moved to paid service, their Marketplace still not much options avaiable. As the time of writing, only 7 add-ons are available, but more and paid service will coming soon.![Cloud Foundry Marketplace](/img/posts/cloud/cloudfoundry-marketplace.png Cloud Foundry Marketplace)### Cloud Foundry Users and Space ManagementsCloud Foundry is open source project by VMWare and most of the VMWare customers are enterprise and large companies. Thus users management is very important aspect of the platform for enterprise and large companies. Cloud Foundry Hosted provide the same users management in the cloud with web console to access. This make Cloud Foundry very suitable for small freelances to large companies. Heroku on PaaS space is quite long enough and still do not have users and space management. Probably Heroku only target small companies?Cloud Foundry include space management as well for managing different environments. You can think space as environment such as *production*, *Staging*, and *Development*. This allow access control to avoid anyone in the organization to start, stop production applications. This is vefy good features for enterprise companies.![Cloud Foundry Users and Space Management](/img/posts/cloud/cloudfoundry-usersmanagement.png Cloud Foundry Users and Space Management)### ConclusionWhat I really like about Cloud Foundry is the ability to allocate appropriate memory to my application, most of the PaaS provides only allow fixed amout of memory, such as Heroku allow 512MB, 1GB and Openshift allow 512MB and 1GB. With the paid service of Cloud Foundry, their pricing is competitive as well. I hope Cloud Foundry keep moving forward and offer multiple regions deployment to stand up from other competitors, since multiple region deploymements will be killer features of PaaS space now."
+},
+
+  {
+  "id"    : "http://dreamand.me/java/jee7-websocket-decode-custom-message/",
+  "title"   : "Java JEE7 JAX-RS 2.0 Client Example",
+  "content" : "JEE6 JAX-RS 1.0 only include API for creating RESTful server application but no API for RESTFul client to consume the resources. [Jersey][Jersey], [RESTEasy][RESTEasy] provide different API and make the client code vendor dependent. Now JEE7 [JAX-RS 2.0][jax-rs] include Client API, which make the API vendor independent. In this blog, I will write the example of using [JAX-RS 2.0][jax-rs].### DependenciesI use maven to manage dependencies, the following `pom.xml` show the dependencies that I used:~~~      javax.ws.rs    javax.ws.rs-api    2.0    provided  ~~~The JAX-RS  2.0 implementation I use is Jersey bundled with [Glassfish 4.0][glassfish]. However, since it is vendor independent, so whether you use JBoss, or Glassfish is the same.### Create Client to Consume Github V3 APINow is tme to create Github client using JAX-RS 2.0. To create a instance of `Client`, use `ClientBuilder.newClient()` factory method to obtaint one. ~~~  Client client = ClientBuilder.newClient();~~~A Web resource can be accessed using a fluent API in which method invocations are chained to build and ultimately submit an HTTP request. The following example gets a `application/json` representation of theresource identified by `https://api.github.com/users/octocat`:~~~  WebTarget userTarget = client.target(https://api.github.com/users/{username});  userTarget      .resolveTemplate(username, octocat)      .request(application/json).get();~~~Note that the `{username}` is the template to access RESTFul API with dynamic value, in this above example, the placeholder is replaced with `octocat`. This is usefull to access different resources on the server.The complete code to access `user` and `repositories`:~~~public class GithubClient {        private Client client;    private WebTarget userTarget;    private WebTarget userRepoTarget;    public GithubClient() {        client = ClientBuilder.newClient();        userTarget = client.target(https://api.github.com/users/{username});        userRepoTarget = client.target(https://api.github.com/users/{username}/repos);    }        public String findUserByUsername(String username) {        Response res = userTarget                .resolveTemplate(username, username)                .request(application/json).get();        return res.readEntity(String.class);    }            public String findRepositoriesByUser(String username) {        Response res = userRepoTarget                .resolveTemplate(username, username)                .request(application/json).get();        return res.readEntity(String.class);    }}~~~After created client to consume REST resource, now create a servlet to call the client:~~~@WebServlet(value = /user)public class ClientExampleServlet extends HttpServlet {        @EJB    GithubClient client;    @Override    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {        resp.getWriter().print(client.findUserByUsername(req.getParameter(username)));    }}~~~Then acces to browser [http://localhost:8080/CONTEXT/client?username=octocat][localhost] will show the following output:~~~{   login:octocat,   id:583231,   avatar_url:https://secure.gravatar.com/avatar/7ad39074b0584bc555d0417ae3e7d974?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png,   gravatar_id:7ad39074b0584bc555d0417ae3e7d974,   url:https://api.github.com/users/octocat,   html_url:https://github.com/octocat,   followers_url:https://api.github.com/users/octocat/followers,   following_url:https://api.github.com/users/octocat/following{/other_user},   gists_url:https://api.github.com/users/octocat/gists{/gist_id},   starred_url:https://api.github.com/users/octocat/starred{/owner}{/repo},   subscriptions_url:https://api.github.com/users/octocat/subscriptions,   organizations_url:https://api.github.com/users/octocat/orgs,   repos_url:https://api.github.com/users/octocat/repos,   events_url:https://api.github.com/users/octocat/events{/privacy},   received_events_url:https://api.github.com/users/octocat/received_events,   type:User,   name:The Octocat,   company:GitHub,   blog:http://www.github.com/blog,   location:San Francisco,   email:octocat@github.com,   hireable:false,   bio:null,   public_repos:3,   followers:360,   following:0,   created_at:2011-01-25T18:44:36Z,   updated_at:2013-06-02T04:35:58Z,   public_gists:4}~~~### ConclusionWith JAX-RS 2.0, now RESTFul client API is first class citizen. Vendor locking is no more and developers only need create one client using standard API.[glassfish]: http://glassfish.java.net[RESTEasy]: http://www.jboss.org/resteasy[Jersey]: http://jersey.java.net[jax-rs]: http://jcp.org/en/jsr/detail?id=339[localhost]: http://localhost:8080/CONTEXT/client?username=octocat"
+},
+
+  {
+  "id"    : "http://dreamand.me/java/java-jee7-jpa-stored-procedure-example/",
+  "title"   : "Java JEE7 JPA 2.1 Stored Procedure Example",
+  "content" : "JEE 7, the next release of Java Enterprice for large application will include a new enchanced JPA 2.1. JPA 2.1 now have native support for stored procedure. Folllow this blog post to know how to use soted procedure in JPA 2.1.Let get started how to use JPA 2.1 to execute stored procedure.### DependenciesI use maven to manage dependencies, the following `pom.xml` show the dependencies that I used:~~~            org.eclipse.persistence        javax.persistence        2.1.0                org.eclipse.persistence        org.eclipse.persistence.jpa        2.5.0                    postgresql        postgresql        9.1-901.jdbc4        runtime    ~~~The JPA 2.1 implementation that I use is Eclipselink, which is Reference Implementation for JPA 2.1.Note the database that I use is Postgresql, you can use appropiate JDBC driver for your database. ### Setup persistence.xml for JPA 2.1The `persistence.xml` for JPA 2.1 is similar with that of JPA 2.0, but with the different version of `xsd`. The following shows the persistence.xml that I used for JPA 2.1:~~~      org.eclipse.persistence.jpa.PersistenceProvider                                        ~~~### Create Stored Procedure For PostgresqlIn this example, I use Postgresql as database. The follows is the stored procedured that I created for this tutorial:~~~CREATE FUNCTION sales_tax(subtotal float, OUT tax float) AS $$BEGIN    tax := subtotal * 0.06;END;$$ LANGUAGE plpgsql;~~~This stored procedure simple take `subtotal` as `IN` then `tax` as `OUT`.### Java JPA 2.1 Stored Procedure CallThe next step is going to the main purpose of the example, call stored procedure in Java JEE7 JPA 2.1, the following is the example code:~~~package me.dreamand.jee7.jpa21;import javax.persistence.EntityManager;import javax.persistence.EntityManagerFactory;import javax.persistence.ParameterMode;import javax.persistence.Persistence;import javax.persistence.StoredProcedureQuery;public class App {    private static final String PERSISTENCE_UNIT_NAME = transactions-optional;    private static EntityManagerFactory factory;    public static void main(String[] args) {        factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);        EntityManager em = factory.createEntityManager();        // Create call stored procedure        em.getTransaction().begin();        StoredProcedureQuery storedProcedure = em.createStoredProcedureQuery(sales_tax);        // set parameters        storedProcedure.registerStoredProcedureParameter(subtotal, Double.class, ParameterMode.IN);        storedProcedure.registerStoredProcedureParameter(tax, Double.class, ParameterMode.OUT);        storedProcedure.setParameter(subtotal, 1f);        // execute SP        storedProcedure.execute();        // get result        Double tax = (Double)storedProcedure.getOutputParameterValue(tax);        System.out.println(Tax is:  + tax);        em.getTransaction().commit();        em.close();    }}~~~Run the `main` method, the console will output the following text:~~~Tax is: 0.06~~~### ConclusionWith the new Java JEE7 JPA 2.1 release bring stored procedure support to the next level without using JDBC low level API. This bring JEE7 to the next most awaited release of JEE."
+},
+
+  {
+  "id"    : "http://dreamand.me/java/jee7-websocket-example/",
+  "title"   : "JEE7 WebSocket Example",
+  "content" : "JEE 7, the next release of Java Enterprice for large application will include a standard WebSocket API for create realtime communication channel over a single TCP connection. The realtime communication allow server to push message to clients in realtime. This tutorial will teach step by step to create a realtime chat program using JEE7 WebSocket API. There are two ways to using  JEE7's WebSocket API, one is using annotations and another is using normal OO concept to extend classes. This tutorial will mainly focus on using annotations based API.### Maven DependenciesRecommended way to manage Java Application's dependencies is using maven. This tutorial will using maven to manage dependencies. Include the following snippet into your pom file `dependencies` section:~~~            javax        javaee-web-api        7.0-b83        provided                javax.websocket        javax.websocket-api        1.0-rc5        provided    ~~~Note that the latest version of WebSocket API is rc5, to get the latest version, please browse to [maven repo websocket][maven repo websocket] to check out.### Annotation UsageBefore get start to use JEE7 WebSocket, let introduce the usage of the annotations:| Annotation       | Description                                           || ---------------- | ----------------------------------------------------- || @ServerEndpoint  | Annotate class as server end point                    || @OnOpen          | Involked when new connection is established           || @OnMessage       | Involked when new message is received                 || @OnClose         | Involked when existing connection is closd            || @OnError         | Involked when there is error in communication channel |### Chat ProgramBased on the annotation usage, we can create a simple chat program using the following code:~~~package me.dreamand.blog.websocket;import java.util.logging.Level;import java.util.logging.Logger;import javax.websocket.OnClose;import javax.websocket.OnError;import javax.websocket.OnMessage;import javax.websocket.OnOpen;import javax.websocket.Session;import javax.websocket.server.ServerEndpoint;@ServerEndpoint(value = /chat)public class ChatServer {        private static final Logger LOGGER =             Logger.getLogger(ChatServer.class.getName());        @OnOpen    public void onOpen(Session session) {        LOGGER.log(Level.INFO, New connection with client: {0},                 session.getId());    }        @OnMessage    public String onMessage(String message, Session session) {        LOGGER.log(Level.INFO, New message from Client [{0}]: {1},                 new Object[] {session.getId(), message});        return Server received [ + message + ];    }        @OnClose    public void onClose(Session session) {        LOGGER.log(Level.INFO, Close connection for client: {0},                 session.getId());    }        @OnError    public void onError(Throwable exception, Session session) {        LOGGER.log(Level.INFO, Error for client: {0}, session.getId());    }}~~~### HTML and Javascript For WebSocketThe next step is to create a client for the chat program. The browser must support WebSocket. The following shows the HTML, CSS, and JavaScript for the browser:~~~            JEE7 WebSocket Example                                                JEE7 WebSocket Example                                            Send    ~~~### Running JEE7 WebSocket ApplictionTo run JEE7 WebSocket enabled application, this tutorial is deploy to GlassFish 4.The following screenshot show the UI and server log for the program:![Initial send message](/img/posts/jee7/chat-1.png Initial send message)![Server reply message](/img/posts/jee7/chat-2.png Server reply message)![Sent second message](/img/posts/jee7/chat-3.png Sent second message)![Server log show activities](/img/posts/jee7/server-log.png Server log show activities)### ConclusionJEE7 is joining the new HTML5 wave for WebSocket for duplex comunication channel. Realtime commication is one of the essential aspect for enterprise application, now with native support without AJAX pooling. In the near future will have large scale applications deploy to use this feature.[websocket]: http://en.wikipedia.org/wiki/WebSocket[maven repo websocket]: http://repo1.maven.org/maven2/javax/websocket/javax.websocket-api/"
+},
+
+  {
+  "id"    : "http://dreamand.me/web/better-url-for-seo/",
+  "title"   : "Better URL for SEO for E-Commerce and Dynamic Website",
+  "content" : "Want better SEO for your e-commerce and dynamic website? Want to increase organic search for your e-commerce and dynamic website? This post will shows how to build better URL for your website and increase sell and better page impression.### Use CaseLet say your website is selling cars, and to have better SEO for your site, you can follow this post to design the URL that boost organic search to a better score. ### Identify URL HierarchyTo design a truely SEO friendly URL for this use case, let see what is the hierarchy for cars. To easily identify the hierarchy, you can follow your database design, for example, one make have one to many models, and one models have zero to many post on your website.Then you can know that the URL structur is like:~~~http://exmple.com/make/model/post~~~Thus the actual URL might look like:~~~http://exmple.com/honda/civic/1-honda-civic-for-sell~~~Tips:If the hierarchy is too deep, you can use shorter URL for each individual post, for example:~~~http://exmple.com/show/1-honda-civic-for-sell~~~But remember, include a breadcrumb in the page to let user to navigate up to the hierarchy, for example:~~~Home &gt; Honda &gt; Civic &gt; Honda Civic For Sell~~~By thi way, the visitor will happy and Google Search will intelgent enough to identify your website structure.### SEO Friendly URLAfter identified the URL structure, the next step is to purpose a friendly URL. The followings shows the guideline for friendly URL:1. All lowercase (Yes, some website still mixing uppercase and lowercase)2. No whitespace, and whitespace is replaced by hyphen (-)3. Not too long (Less than 85 characters)4. Contain one to three keywords, not too much5. ASCII only charactersUsing the guideline, a friendly URL example is show at below:~~~http://exmple.com/mercedes-benz/c-class/1-mercedes-benz-c-class-for-sellorhttp://exmple.com/honda/civic/1-honda-civic-for-sell~~~### Better Search Landing PageSo your website contain a search box for visitors to search for what they really want, instead of landing to a page with URL `http://exmple.com/search?q=honda`, you can redirect to a dedicated page for all honda's cars with better SEO URL as follow:~~~http://exmple.com/hondaorhttp://exmple.com/honda/civicfor paginationhttp://exmple.com/honda/civic?page=2~~~By using this tip, you provide a better SEO friendly URL for Search Engine to index and user friendly too.### Ask Google Index Your URLsThe ultimate step is to index all of your URLs using `sitemap.xml` by generating all of the possible URLs for your website. But do not generate individual URL for each post in `sitemap.xml`, instead, Google will index the individual post via the search landing page.Example of `sitemap.xml`:~~~      http://example.com    daily    0.8        http://example.com/audi    daily        http://example.com/hyundai    daily  ~~~{: .language-xml}Sitemaps are particularly helpful if:1. Your site has dynamic content.2. Your site has pages that aren't easily discoverd by Googlebot during the crawl process-for example, pages featuring rich AJAX or images.3. Your site is new and has few links to it. (Googlebot crawls the web by following links from one page to another, so if your site isn't well linked, it may be hard to Google to discover it.)### ConclusionFollowing this post's tips and guideline, you can increase your website's organic search impression and more visitors will visit your site."
+},
+
+  {
+  "id"    : "http://dreamand.me/java/jee7-json-example/",
+  "title"   : "JEE7 JSON API Example",
+  "content" : "JEE 7, the next release of Java Enterprice Edition for large application will include a standard JSON API without using third party JSON API such as [JSON.org][jsobn-org]. Is time to use standard API for Java web development.### SetupI use [maven][maven] for managing dependencies and the RI for JSON API is from [glassfish][glassfish]. You can download the jars into your project as well from [json-api][json-api] and [json-ri][json-ri] from maven site if you not using maven to manage dependency. The example `pom.xml` is as below:~~~  4.0.0  me.dreamand  json  1.0.0-SNAPSHOT                    org.mortbay.jetty        jetty-maven-plugin        8.1.9.v20130131                        javax.json      javax.json-api      1.0-b06              org.glassfish      javax.json      1.0-b06      runtime              javax.servlet      javax.servlet-api      3.0.1      provided      ~~~### JEE 7 JSON API ExampleThen the next step is start to use JEE7 JSON API~~~// importimport javax.json.Json;import javax.json.JsonArray;import javax.json.JsonArrayBuilder;import java.io.Serializable;import java.util.ArrayList;import java.util.Date;import java.util.List;public class JsonExample {    public static void main(String[] args) {        List users = getUsers();        // build JSON        JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder();        for(User user: users) {            jsonArrayBuilder.add(                    Json.createObjectBuilder()                            .add(id, user.getId())                            .add(name, user.getName())                            .add(join, user.getJoin().getTime())            );        }        JsonArray usersJson = jsonArrayBuilder.build();        System.out.println(usersJson.toString());    }    // dummy users    public static List getUsers() {        List users = new ArrayList(10);        User user = new User();        user.setId(1);        user.setName(Hero);        user.setJoin(new Date());        users.add(user);        user = new User();        user.setId(2);        user.setName(Citizen);        user.setJoin(new Date());        users.add(user);        return users;    }    // POJO    public static class User implements Serializable {        private long id;        private String name;        private Date join;        public long getId() {            return id;        }        public void setId(long id) {            this.id = id;        }        public String getName() {            return name;        }        public void setName(String name) {            this.name = name;        }        public Date getJoin() {            return join;        }        public void setJoin(Date join) {            this.join = join;        }    }}~~~Output of the program:~~~[{id:1,name:Hero,join:1366808892498},{id:2,name:Citizen,join:1366808892498}]~~~[json-org]: http://json.org/java/[maven]: http://maven.apache.org/[json-api]: http://repo1.maven.org/maven2/javax/json/javax.json-api/[json-ri]: http://repo1.maven.org/maven2/org/glassfish/javax.json/[glassfish]: http://glassfish.java.net/"
+},
+
 ];
 // init lunr
 var idx = lunr(function () {
@@ -95,21 +160,23 @@ for(var index in docs) {
   idx.add(docs[index]);
 }
 </code></pre>
+</div>
 
 <p><strong>Note:</strong> The file must begin with YAML front matter block so it will be processed by Jekyll as special files.</p>
 
-<p>Now your blog is index under <code>idx</code> object and you can search it. At the end of the documents, create a <code>lunr</code> with index fields <strong>title</strong> and <strong>content</strong> to be index.</p>
+<p>Now your blog is index under <code class="highlighter-rouge">idx</code> object and you can search it. At the end of the documents, create a <code class="highlighter-rouge">lunr</code> with index fields <strong>title</strong> and <strong>content</strong> to be index.</p>
 
 <h3 id="search">Search</h3>
-<p>Now is time to create search capibility using html, javascript. First, include <code>search.js</code> and <code>lunr</code> js in your site:</p>
+<p>Now is time to create search capibility using html, javascript. First, include <code class="highlighter-rouge">search.js</code> and <code class="highlighter-rouge">lunr</code> js in your site:</p>
 
-<pre><code>&lt;script src="/js/lunr.min.js"&gt;&lt;/script&gt;
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;script src="/js/lunr.min.js"&gt;&lt;/script&gt;
 &lt;script src="/search.js"&gt;&lt;/script&gt;
 </code></pre>
+</div>
 
-<p>Is time to create <code>form</code> element for user to search, I have created partial <code>search.html</code> for display search form:</p>
+<p>Is time to create <code class="highlighter-rouge">form</code> element for user to search, I have created partial <code class="highlighter-rouge">search.html</code> for display search form:</p>
 
-<pre><code>&lt;div class="minor well shadow"&gt;
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;div class="minor well shadow"&gt;
   &lt;h3&gt;Search&lt;/h3&gt;
   &lt;form&gt;
     &lt;div class="input-append"&gt;
@@ -119,10 +186,11 @@ for(var index in docs) {
   &lt;/form&gt;
 &lt;/div&gt;
 </code></pre>
+</div>
 
-<p>Finally, add jquery to handle search event, add into <code>search.js</code> or other javascript file:</p>
+<p>Finally, add jquery to handle search event, add into <code class="highlighter-rouge">search.js</code> or other javascript file:</p>
 
-<pre><code>$(function() {
+<div class="highlighter-rouge"><pre class="highlight"><code>$(function() {
   $("#search button").click(function() {
     search();
   });
@@ -143,6 +211,7 @@ function search() {
   }
 }
 </code></pre>
+</div>
 
 <h3 id="improvement">Improvement</h3>
 
@@ -171,20 +240,23 @@ function search() {
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
-          </div>
-        </div>
-          <div class="span4">
-          
-          <div class="minor well shadow">
+      </div>
+    </div>
+    <div class="col-md-4">
+      
+      <div class="minor well shadow">
   <h3>Search</h3>
   <form id="search">
-    <div class="input-append">
-      <input type="search" name="q" id="q" placeholder="Enter keywords..." class="input-medium"/>
-      <button class="btn" type="button">GO!</button>
+    <div class="input-group">
+      <input type="search" name="q" id="q" placeholder="Enter keywords..." class="form-control"/>
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button"><span class="fa fa-search"></span> Search</button>
+      </span>
     </div>
   </form>
 </div>
-          <div class="minor well shadow">
+
+      <div class="minor well shadow">
   <h3>Find Me</h3>
   <ul class="unstyled">
     <li><i class="icon-rss"></i>Subscribe via <a href="/feed.xml" target="_blank">RSS</a></li>
@@ -193,7 +265,7 @@ function search() {
   </ul>
 </div>
 
-          <div class="minor well shadow">
+      <div class="minor well shadow">
   <h3>Categories</h3>
   
     <ul class="unstyled">
@@ -217,26 +289,25 @@ function search() {
 </div>
 
 
-          </div>
-      </div>
-      <div class="row">
-        <div class="span12">
-          <hr />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <hr />
 <footer>
   &copy; 2012 Pau Kiat Wee
 </footer>
 
-        </div>
-      </div>
     </div>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script src="/js/jquery.flot.js"></script>
-    <script src="/js/jquery.flot.navigate.js"></script>
-    <script src="/js/jquery.flot.resize.js"></script>
-    <script src="/js/jquery.flot.axislabels.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/lunr.min.js"></script>
-    <script src="/search.js"></script>
-    <script src="/js/front.js"></script>
-  </body>
+  </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="/js/jquery.flot.js"></script>
+<script src="/js/jquery.flot.navigate.js"></script>
+<script src="/js/jquery.flot.resize.js"></script>
+<script src="/js/jquery.flot.axislabels.js"></script>
+<script src="https://cdn.jsdelivr.net/lunr/0.6.0/lunr.min.js"></script>
+<script src="/search.js"></script>
+<script src="/js/front.js"></script>
+</body>
 </html>

@@ -1,58 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <meta name="author" content="Pau Kiat Wee" />
-    
-    
-    <meta name="robots" content="noodp, noydir" />
-    
-    
-    
-    <meta name="description" content="Learn how to quicky start development and deploy Java Springframework and JPA 2 web application to Cloud Foundry." />
-    
-    
-    
-    <title>Deploy Springframeworka and JPA 2 Quickstart to Cloud Foundry in Minutes | Dream and Me</title>
-    
-    <link href="/css/style.css" rel="stylesheet">
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-33747052-1']);
-      _gaq.push(['_trackPageview']);
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
-  </head>
-  <body>
-  <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li><a href="/"><i class="icon-home font"></i>Home</a></li>
-              <li><a href="/app/"><i class="icon-bolt font"></i>Apps</a></li>
-              <li><a href="/privacy/"><i class="icon-lock font"></i>Privacy</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Pau Kiat Wee" />
+  
+  
+  <meta name="robots" content="noodp, noydir" />
+  
+  
+  
+  <meta name="description" content="Learn how to quicky start development and deploy Java Springframework and JPA 2 web application to Cloud Foundry." />
+  
+  
+  
+  <title>Deploy Springframeworka and JPA 2 Quickstart to Cloud Foundry in Minutes | Dream and Me</title>
+  
+  <link href="https://cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/fontawesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-33747052-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body>
+<nav class="navbar navbar-static-top navbar-inverse">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Dream And Me</a>
     </div>
-    <div class="container">
-      <div class="row">
-        <div class="span8">
-          <div class="well main shadow">
-            <h2>Deploy Springframeworka and JPA 2 Quickstart to Cloud Foundry in Minutes</h2>
+
+    <div class="collapse navbar-collapse" id="navbar">
+      <ul class="nav navbar-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/app/">Apps</a></li>
+        <li><a href="/privacy/">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="well main shadow">
+        <h2>Deploy Springframeworka and JPA 2 Quickstart to Cloud Foundry in Minutes</h2>
 <div class="social-share"><small>09 August 2013</small>&nbsp;&nbsp;&nbsp;
   <div class="tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://dreamandme.com/java/deploy-springframwork-hibernate-to-cloudfoundy/" data-text="Deploy Springframeworka and JPA 2 Quickstart to Cloud Foundry in Minutes">Tweet</a></div>
   <div class="g-plusone" data-size="medium"></div>
@@ -67,30 +73,33 @@
 
 <ul>
   <li><a href="http:://cloudfoundry.com">Cloud Foundry</a> Account</li>
-  <li><code>cf</code> CLI installed</li>
-  <li><code>maven</code> installed</li>
-  <li><code>git</code> installed</li>
+  <li><code class="highlighter-rouge">cf</code> CLI installed</li>
+  <li><code class="highlighter-rouge">maven</code> installed</li>
+  <li><code class="highlighter-rouge">git</code> installed</li>
 </ul>
 
 <h3 id="clone-project">Clone Project</h3>
 
 <p>I created <a href="https://github.com/paukiatwee/webapp-bootstrap">webapp-bootstrap</a> using <a href="http://www.springsource.org">Spring Framework</a>, JPA 2 (<a href="http://www.hibernate.org">Hibernate</a>) and <a href="http://getbootstrap.com">Twitter Bootstrap</a> template and available on Github. You can clone into your machine to get started:</p>
 
-<pre><code>git clone https://github.com/paukiatwee/webapp-bootstrap.git
+<div class="highlighter-rouge"><pre class="highlight"><code>git clone https://github.com/paukiatwee/webapp-bootstrap.git
 </code></pre>
+</div>
 
 <h3 id="start-local-web-server">Start Local Web Server</h3>
 
 <p>The template I created already configured a jetty server to developers can quickly start development straight aways instead of need to setup tomcat/jboss locally. To start the embadded jetty server, just run the followings command:</p>
 
-<pre><code>cd webapp-bootstrap
+<div class="highlighter-rouge"><pre class="highlight"><code>cd webapp-bootstrap
 sh run.sh # or run.bat on Windows
 </code></pre>
+</div>
 
 <p>I writed a shell/bat script that start embadded jetty server, underlaying it is executing:</p>
 
-<pre><code>mvn clean compile jetty:run
+<div class="highlighter-rouge"><pre class="highlight"><code>mvn clean compile jetty:run
 </code></pre>
+</div>
 
 <p>just to save few keystrokes. :)</p>
 
@@ -102,16 +111,17 @@ sh run.sh # or run.bat on Windows
 
 <p>Before deploy to Cloud Foundry, you will need to package Java web application as a war file. Packaging war file using maven is easy:</p>
 
-<pre><code>mvn clean package
+<div class="highlighter-rouge"><pre class="highlight"><code>mvn clean package
 </code></pre>
+</div>
 
-<p>After the command is completed, the war file is generated into <code>target</code> folder. Now you can start deploy to Cloud Foundry!</p>
+<p>After the command is completed, the war file is generated into <code class="highlighter-rouge">target</code> folder. Now you can start deploy to Cloud Foundry!</p>
 
 <h3 id="deploy-to-cloud-foundry">Deploy to Cloud Foundry</h3>
 
-<p>Before you deploy to Cloud Foundry, you must login using <code>cf</code> tool:</p>
+<p>Before you deploy to Cloud Foundry, you must login using <code class="highlighter-rouge">cf</code> tool:</p>
 
-<pre><code>cd target
+<div class="highlighter-rouge"><pre class="highlight"><code>cd target
 cf login
 target: https://api.run.pivotal.io
 
@@ -121,10 +131,11 @@ Password&gt; ***********
 
 Authenticating... OK
 </code></pre>
+</div>
 
 <p>After autheticated, you can deploy webapp-bootstrap to Cloud Foundry</p>
 
-<pre><code>cf push webapp-bootstrap
+<div class="highlighter-rouge"><pre class="highlight"><code>cf push webapp-bootstrap
 Instances&gt; 1
 
 1: 128M
@@ -184,6 +195,7 @@ Checking status of app 'webapp-bootstrap'....
   1 of 1 instances running (1 running)
 Push successful! App 'webapp-bootstrap' available at http://webapp-bootstrap.cfapps.io
 </code></pre>
+</div>
 
 <p>After push successfuly, browse to <a href="http://YOUR_APP.cfapps.io">http://YOUR_APP.cfapps.io</a> to view the deployed app.</p>
 
@@ -211,20 +223,23 @@ Push successful! App 'webapp-bootstrap' available at http://webapp-bootstrap.cfa
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
-          </div>
-        </div>
-          <div class="span4">
-          
-          <div class="minor well shadow">
+      </div>
+    </div>
+    <div class="col-md-4">
+      
+      <div class="minor well shadow">
   <h3>Search</h3>
   <form id="search">
-    <div class="input-append">
-      <input type="search" name="q" id="q" placeholder="Enter keywords..." class="input-medium"/>
-      <button class="btn" type="button">GO!</button>
+    <div class="input-group">
+      <input type="search" name="q" id="q" placeholder="Enter keywords..." class="form-control"/>
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button"><span class="fa fa-search"></span> Search</button>
+      </span>
     </div>
   </form>
 </div>
-          <div class="minor well shadow">
+
+      <div class="minor well shadow">
   <h3>Find Me</h3>
   <ul class="unstyled">
     <li><i class="icon-rss"></i>Subscribe via <a href="/feed.xml" target="_blank">RSS</a></li>
@@ -233,7 +248,7 @@ Push successful! App 'webapp-bootstrap' available at http://webapp-bootstrap.cfa
   </ul>
 </div>
 
-          <div class="minor well shadow">
+      <div class="minor well shadow">
   <h3>Categories</h3>
   
     <ul class="unstyled">
@@ -257,26 +272,25 @@ Push successful! App 'webapp-bootstrap' available at http://webapp-bootstrap.cfa
 </div>
 
 
-          </div>
-      </div>
-      <div class="row">
-        <div class="span12">
-          <hr />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <hr />
 <footer>
   &copy; 2012 Pau Kiat Wee
 </footer>
 
-        </div>
-      </div>
     </div>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script src="/js/jquery.flot.js"></script>
-    <script src="/js/jquery.flot.navigate.js"></script>
-    <script src="/js/jquery.flot.resize.js"></script>
-    <script src="/js/jquery.flot.axislabels.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/lunr.min.js"></script>
-    <script src="/search.js"></script>
-    <script src="/js/front.js"></script>
-  </body>
+  </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="/js/jquery.flot.js"></script>
+<script src="/js/jquery.flot.navigate.js"></script>
+<script src="/js/jquery.flot.resize.js"></script>
+<script src="/js/jquery.flot.axislabels.js"></script>
+<script src="https://cdn.jsdelivr.net/lunr/0.6.0/lunr.min.js"></script>
+<script src="/search.js"></script>
+<script src="/js/front.js"></script>
+</body>
 </html>
